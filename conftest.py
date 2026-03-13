@@ -8,7 +8,22 @@ This module provides fixtures for:
 """
 
 import pytest
+
+# Enable assertion rewriting BEFORE importing framework modules
+pytest.register_assert_rewrite("framework.assertions")
+
 from framework import fixtures
+
+from pymongo import MongoClient
+
+# Import validators
+from framework.test_structure_validator import (
+    validate_test_file_location,
+    validate_python_files_in_tests
+)
+from framework.test_format_validator import validate_test_format
+from framework.error_codes_validator import validate_error_codes_sorted
+from pathlib import Path
 
 
 def pytest_addoption(parser):
@@ -48,11 +63,11 @@ def pytest_configure(config):
 def engine_client(request):
     """
     Create a MongoDB client for the configured engine.
-    
+
     Session-scoped for performance - MongoClient is thread-safe and maintains
     an internal connection pool. This significantly improves test execution speed
     by eliminating redundant connection overhead.
-    
+
     Per-test isolation is maintained through database_client and collection fixtures
     which create unique databases/collections for each test.
 
@@ -61,7 +76,7 @@ def engine_client(request):
 
     Yields:
         MongoClient: Connected MongoDB client (shared across session)
-        
+
     Raises:
         ConnectionError: If unable to connect to the database
     """
@@ -124,10 +139,68 @@ def collection(database_client, request, worker_id):
     # Generate unique collection name using framework utility
     full_test_id = request.node.nodeid
     collection_name = fixtures.generate_collection_name(full_test_id, worker_id)
-    
+
     coll = database_client[collection_name]
 
     yield coll
 
     # Cleanup: drop collection
     fixtures.cleanup_collection(database_client, collection_name)
+
+
+def pytest_collection_modifyitems(session, config, items):
+    """
+    Combined pytest hook to validate test structure, format, and framework invariants.
+    """
+    errors = []
+    seen_files = set()
+    format_errors = {}
+
+    # Validate structure and format for collected test files
+    for item in items:
+        file_path = str(item.fspath)
+
+        # Skip if we've already validated this file
+        if file_path in seen_files:
+            continue
+        seen_files.add(file_path)
+
+        # Validate structure
+        is_valid, error_msg = validate_test_file_location(file_path)
+        if not is_valid:
+            errors.append(f"\n  {file_path}\n    → {error_msg}")
+
+        # Validate format
+        file_errors = validate_test_format(file_path)
+        if file_errors:
+            format_errors[file_path] = file_errors
+
+    # Validate all Python files in tests directory
+    if items:
+        first_item_path = Path(items[0].fspath)
+        if "tests" in first_item_path.parts:
+            tests_idx = first_item_path.parts.index("tests")
+            tests_dir = Path(*first_item_path.parts[:tests_idx + 1])
+            errors.extend(validate_python_files_in_tests(tests_dir))
+
+    # Validate framework invariants
+    errors.extend(validate_error_codes_sorted())
+
+    # Report all errors
+    if errors or format_errors:
+        import sys
+
+        if errors:
+            print("\n\n❌ Folder Structure Violations:", file=sys.stderr)
+            print("".join(errors), file=sys.stderr)
+            print("\nSee docs/testing/FOLDER_STRUCTURE.md for rules.\n", file=sys.stderr)
+
+        if format_errors:
+            print("\n❌ Test Format Violations:", file=sys.stderr)
+            for file_path, file_errors in format_errors.items():
+                print(f"\n{file_path}:", file=sys.stderr)
+                print("\n".join(file_errors), file=sys.stderr)
+            print("\nSee docs/testing/TEST_FORMAT.md for rules.\n", file=sys.stderr)
+
+        pytest.exit("Test validation failed", returncode=1)
+
