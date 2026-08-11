@@ -281,6 +281,63 @@ def test_range_no_sortby(collection):
     assertFailureCode(result, 5339902, msg="range window without sortBy rejected")
 
 
+# sortBy: null and {} are treated as absent — same error as omitting sortBy entirely
+
+
+def test_range_null_sortby(collection):
+    """Range window with sortBy: null (treated as omitted) produces error 5339902."""
+    collection.insert_many(SINGLE_DOC)
+    result = execute_command(
+        collection,
+        {
+            "aggregate": collection.name,
+            "pipeline": [
+                {
+                    "$setWindowFields": {
+                        "partitionBy": "$partition",
+                        "sortBy": None,
+                        "output": {
+                            "result": {
+                                "$sum": "$value",
+                                "window": {"range": [-10, 10]},
+                            }
+                        },
+                    }
+                }
+            ],
+            "cursor": {},
+        },
+    )
+    assertFailureCode(result, 5339902, msg="range window with sortBy: null rejected")
+
+
+def test_range_empty_sortby(collection):
+    """Range window with sortBy: {} (empty object, no sort fields) produces error 5339902."""
+    collection.insert_many(SINGLE_DOC)
+    result = execute_command(
+        collection,
+        {
+            "aggregate": collection.name,
+            "pipeline": [
+                {
+                    "$setWindowFields": {
+                        "partitionBy": "$partition",
+                        "sortBy": {},
+                        "output": {
+                            "result": {
+                                "$sum": "$value",
+                                "window": {"range": [-10, 10]},
+                            }
+                        },
+                    }
+                }
+            ],
+            "cursor": {},
+        },
+    )
+    assertFailureCode(result, 5339902, msg="range window with sortBy: {} rejected")
+
+
 def test_range_descending_sort(collection):
     """Range mode with descending sort produces error 8947401."""
     collection.insert_many(SINGLE_DOC)

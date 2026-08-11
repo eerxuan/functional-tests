@@ -191,6 +191,65 @@ def test_time_range_unit_without_date_sortby(collection):
     assertFailureCode(result, 5429513, msg="time unit with non-date sortBy rejected")
 
 
+# Property [Fractional Bound with Unit]: time-range bounds must be integers
+
+
+def test_time_range_fractional_bound(collection):
+    """Range with fractional bound and time unit produces error."""
+    collection.insert_many(SINGLE_DATE_DOC)
+    result = execute_command(
+        collection,
+        {
+            "aggregate": collection.name,
+            "pipeline": [
+                {
+                    "$setWindowFields": {
+                        "partitionBy": "$partition",
+                        "sortBy": {"date": 1},
+                        "output": {
+                            "result": {
+                                "$sum": "$value",
+                                "window": {"range": [-1.5, 1.5], "unit": "hour"},
+                            }
+                        },
+                    }
+                }
+            ],
+            "cursor": {},
+        },
+    )
+    assertFailureCode(result, FAILED_TO_PARSE_ERROR, msg="fractional bound with time unit rejected")
+
+
+def test_time_range_fractional_lower_bound_only(collection):
+    """Range with fractional lower bound and integer upper bound with time unit produces error."""
+    collection.insert_many(SINGLE_DATE_DOC)
+    result = execute_command(
+        collection,
+        {
+            "aggregate": collection.name,
+            "pipeline": [
+                {
+                    "$setWindowFields": {
+                        "partitionBy": "$partition",
+                        "sortBy": {"date": 1},
+                        "output": {
+                            "result": {
+                                "$sum": "$value",
+                                "window": {"range": [-1.5, 2], "unit": "hour"},
+                            }
+                        },
+                    }
+                }
+            ],
+            "cursor": {},
+        },
+    )
+    assertFailureCode(
+        result, FAILED_TO_PARSE_ERROR, msg="fractional lower bound with time unit rejected"
+    )
+
+
 # Property [Bound Type Validation with Unit]: bounds must be numeric when unit is specified
 
 

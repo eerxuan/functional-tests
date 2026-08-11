@@ -573,3 +573,33 @@ def test_cumulative_documents_window_without_sortby(collection):
         },
     )
     assertFailureCode(result, 5339901, msg="cumulative documents window without sortBy rejected")
+
+
+# sortBy: null is treated as omitted — same error as missing sortBy
+
+
+def test_bounded_documents_window_with_null_sortby(collection):
+    """Bounded documents window [-1, 0] with sortBy: null produces error."""
+    collection.insert_many(SINGLE_DOC)
+    result = execute_command(
+        collection,
+        {
+            "aggregate": collection.name,
+            "pipeline": [
+                {
+                    "$setWindowFields": {
+                        "partitionBy": "$partition",
+                        "sortBy": None,
+                        "output": {
+                            "result": {
+                                "$sum": "$value",
+                                "window": {"documents": [-1, 0]},
+                            }
+                        },
+                    }
+                }
+            ],
+            "cursor": {},
+        },
+    )
+    assertFailureCode(result, 5339901, msg="bounded documents window with sortBy: null rejected")
