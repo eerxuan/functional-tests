@@ -1,7 +1,7 @@
 """
-Tests for $documentNumber argument validation in window context.
+Tests for $denseRank argument validation in window context.
 
-$documentNumber is a frameless rank operator with a fixed accepted shape:
+$denseRank is a frameless rank operator with a fixed accepted shape:
 - Its value must be exactly the empty object `{}` — any other value is rejected.
 - It takes no other arguments, so a `window` key (or any extra key) is rejected.
 - It requires a top-level `sortBy` with exactly one element — omitted, empty,
@@ -24,14 +24,14 @@ from documentdb_tests.framework.executor import execute_command
 SINGLE_DOC = [{"_id": 1, "partition": "A", "value": 10}]
 
 
-# Property [Accepted Shape]: $documentNumber takes exactly `{}` and no other arguments.
+# Property [Accepted Shape]: $denseRank takes exactly `{}` and no other arguments.
 
 
-def test_documentNumber_empty_object_accepted(collection):
-    """$documentNumber with `{}` as its value is the valid form."""
-    result = run_window_operator(collection, "$documentNumber", SINGLE_DOC, expression={})
+def test_denseRank_empty_object_accepted(collection):
+    """$denseRank with `{}` as its value is the valid form."""
+    result = run_window_operator(collection, "$denseRank", SINGLE_DOC, expression={})
     expected = [{"_id": 1, "partition": "A", "value": 10, "result": 1}]
-    assertSuccess(result, expected, msg="$documentNumber accepts empty object")
+    assertSuccess(result, expected, msg="$denseRank accepts empty object")
 
 
 # Property [Non-Empty Value Rejected]: any value other than `{}` errors with 5371603.
@@ -52,17 +52,17 @@ NON_EMPTY_ARGS = [
 
 
 @pytest.mark.parametrize("case_id,arg", NON_EMPTY_ARGS, ids=[c[0] for c in NON_EMPTY_ARGS])
-def test_documentNumber_non_empty_value_errors(collection, case_id, arg):
-    """$documentNumber rejects any value that is not the empty object."""
-    result = run_window_operator(collection, "$documentNumber", SINGLE_DOC, expression=arg)
+def test_denseRank_non_empty_value_errors(collection, case_id, arg):
+    """$denseRank rejects any value that is not the empty object."""
+    result = run_window_operator(collection, "$denseRank", SINGLE_DOC, expression=arg)
     assertFailureCode(
         result,
         RANK_STYLE_WINDOW_NON_EMPTY_ARG_ERROR,
-        msg=f"$documentNumber rejects {case_id} value — only '{{}}' is valid",
+        msg=f"$denseRank rejects {case_id} value — only '{{}}' is valid",
     )
 
 
-# Property [Frameless]: $documentNumber takes no other arguments, including `window`.
+# Property [Frameless]: $denseRank takes no other arguments, including `window`.
 
 
 @pytest.mark.parametrize(
@@ -75,20 +75,18 @@ def test_documentNumber_non_empty_value_errors(collection, case_id, arg):
     ],
     ids=["documents_cumulative", "documents_whole_partition", "documents_sliding", "range_bounds"],
 )
-def test_documentNumber_window_key_errors(collection, case_id, window):
-    """$documentNumber is frameless — specifying a `window` key is rejected."""
-    result = run_window_operator(
-        collection, "$documentNumber", SINGLE_DOC, window=window, expression={}
-    )
+def test_denseRank_window_key_errors(collection, case_id, window):
+    """$denseRank is frameless — specifying a `window` key is rejected."""
+    result = run_window_operator(collection, "$denseRank", SINGLE_DOC, window=window, expression={})
     assertFailureCode(
         result,
         RANK_STYLE_WINDOW_EXTRA_ARGS_ERROR,
-        msg=f"$documentNumber rejects a {case_id} window — it is frameless",
+        msg=f"$denseRank rejects a {case_id} window — it is frameless",
     )
 
 
-def test_documentNumber_unknown_key_in_output_field_errors(collection):
-    """An unknown key alongside $documentNumber in the output field is rejected."""
+def test_denseRank_unknown_key_in_output_field_errors(collection):
+    """An unknown key alongside $denseRank in the output field is rejected."""
     collection.insert_many(SINGLE_DOC)
     result = execute_command(
         collection,
@@ -99,7 +97,7 @@ def test_documentNumber_unknown_key_in_output_field_errors(collection):
                     "$setWindowFields": {
                         "partitionBy": "$partition",
                         "sortBy": {"_id": 1},
-                        "output": {"result": {"$documentNumber": {}, "unknownKey": 1}},
+                        "output": {"result": {"$denseRank": {}, "unknownKey": 1}},
                     }
                 }
             ],
@@ -109,12 +107,12 @@ def test_documentNumber_unknown_key_in_output_field_errors(collection):
     assertFailureCode(
         result,
         RANK_STYLE_WINDOW_EXTRA_ARGS_ERROR,
-        msg="unknown key alongside $documentNumber rejected",
+        msg="unknown key alongside $denseRank rejected",
     )
 
 
-def test_documentNumber_second_operator_in_output_field_errors(collection):
-    """Another window operator in the same output field as $documentNumber is rejected."""
+def test_denseRank_second_operator_in_output_field_errors(collection):
+    """Another window operator in the same output field as $denseRank is rejected."""
     collection.insert_many(SINGLE_DOC)
     result = execute_command(
         collection,
@@ -125,7 +123,7 @@ def test_documentNumber_second_operator_in_output_field_errors(collection):
                     "$setWindowFields": {
                         "partitionBy": "$partition",
                         "sortBy": {"_id": 1},
-                        "output": {"result": {"$documentNumber": {}, "$rank": {}}},
+                        "output": {"result": {"$denseRank": {}, "$rank": {}}},
                     }
                 }
             ],
@@ -135,15 +133,15 @@ def test_documentNumber_second_operator_in_output_field_errors(collection):
     assertFailureCode(
         result,
         RANK_STYLE_WINDOW_EXTRA_ARGS_ERROR,
-        msg="a second window operator alongside $documentNumber rejected",
+        msg="a second window operator alongside $denseRank rejected",
     )
 
 
-# Property [sortBy Requirement]: $documentNumber needs a top-level sortBy with one element.
+# Property [sortBy Requirement]: $denseRank needs a top-level sortBy with one element.
 
 
-def test_documentNumber_sortBy_omitted_errors(collection):
-    """$documentNumber requires sortBy — omitting it is rejected."""
+def test_denseRank_sortBy_omitted_errors(collection):
+    """$denseRank requires sortBy — omitting it is rejected."""
     collection.insert_many(SINGLE_DOC)
     result = execute_command(
         collection,
@@ -153,7 +151,7 @@ def test_documentNumber_sortBy_omitted_errors(collection):
                 {
                     "$setWindowFields": {
                         "partitionBy": "$partition",
-                        "output": {"result": {"$documentNumber": {}}},
+                        "output": {"result": {"$denseRank": {}}},
                     }
                 }
             ],
@@ -163,29 +161,27 @@ def test_documentNumber_sortBy_omitted_errors(collection):
     assertFailureCode(
         result,
         RANK_STYLE_WINDOW_SORTBY_ONE_ELEMENT_ERROR,
-        msg="$documentNumber requires a sortBy expression",
+        msg="$denseRank requires a sortBy expression",
     )
 
 
-def test_documentNumber_sortBy_empty_object_errors(collection):
-    """An empty sortBy object has no elements, so $documentNumber rejects it."""
+def test_denseRank_sortBy_empty_object_errors(collection):
+    """An empty sortBy object has no elements, so $denseRank rejects it."""
+    result = run_window_operator(collection, "$denseRank", SINGLE_DOC, sort_by={}, expression={})
+    assertFailureCode(
+        result,
+        RANK_STYLE_WINDOW_SORTBY_ONE_ELEMENT_ERROR,
+        msg="$denseRank rejects an empty sortBy object",
+    )
+
+
+def test_denseRank_multi_field_sortBy_errors(collection):
+    """$denseRank requires exactly one sortBy element — two fields are rejected."""
     result = run_window_operator(
-        collection, "$documentNumber", SINGLE_DOC, sort_by={}, expression={}
+        collection, "$denseRank", SINGLE_DOC, sort_by={"value": -1, "_id": 1}, expression={}
     )
     assertFailureCode(
         result,
         RANK_STYLE_WINDOW_SORTBY_ONE_ELEMENT_ERROR,
-        msg="$documentNumber rejects an empty sortBy object",
-    )
-
-
-def test_documentNumber_multi_field_sortBy_errors(collection):
-    """$documentNumber requires exactly one sortBy element — two fields are rejected."""
-    result = run_window_operator(
-        collection, "$documentNumber", SINGLE_DOC, sort_by={"value": -1, "_id": 1}, expression={}
-    )
-    assertFailureCode(
-        result,
-        RANK_STYLE_WINDOW_SORTBY_ONE_ELEMENT_ERROR,
-        msg="$documentNumber rejects a multi-field sortBy",
+        msg="$denseRank rejects a multi-field sortBy",
     )
