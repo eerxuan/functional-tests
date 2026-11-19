@@ -41,6 +41,7 @@ ERROR_TESTS: list[DiagnosticTestCase] = [
         use_admin=True,
         error_code=UNRECOGNIZED_COMMAND_FIELD_ERROR,
         msg="Should reject unrecognized fields",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

@@ -30,6 +30,7 @@ ERROR_TESTS: list[DiagnosticTestCase] = [
         command={"dataSize": ""},
         error_code=INVALID_NAMESPACE_ERROR,
         msg="Empty string should fail",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     DiagnosticTestCase(
         "no_dot",

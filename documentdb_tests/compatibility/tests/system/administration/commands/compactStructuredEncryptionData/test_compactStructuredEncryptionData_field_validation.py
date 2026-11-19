@@ -75,6 +75,7 @@ def test_compactStructuredEncryptionData_accepts_valid_compactionTokens_type(
     )
 
 
+@pytest.mark.requires(spec_since="8.2")
 def test_compactStructuredEncryptionData_rejects_non_string_collection_name(collection):
     """Test compactStructuredEncryptionData rejects non-string collection name."""
     cmd = {"compactStructuredEncryptionData": 1, "compactionTokens": {}}

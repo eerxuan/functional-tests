@@ -52,6 +52,7 @@ WRITE_CONCERN_ACCEPTED_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": 1.0},
         msg="setFeatureCompatibilityVersion should treat writeConcern=null as omitted",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "omitted",

@@ -65,6 +65,7 @@ FSYNC_WRITE_CONCERN_TYPE_ERROR_TESTS: list[CommandTestCase] = [
         error_code=TYPE_MISMATCH_ERROR,
         msg=f"fsync should reject a {tid} writeConcern value as a non-document "
         "with a TypeMismatch error",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         ("int32", 42),
@@ -93,6 +94,7 @@ FSYNC_WRITE_CONCERN_NULL_TESTS: list[CommandTestCase] = [
         command={"fsync": 1, "writeConcern": None},
         expected={"ok": Eq(1.0), "numFiles": Eq(1), "lockCount": NotExists()},
         msg="fsync should treat a null writeConcern as absent and perform a no-lock flush",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

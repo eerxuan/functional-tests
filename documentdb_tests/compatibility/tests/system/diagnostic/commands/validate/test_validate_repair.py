@@ -70,24 +70,28 @@ REPAIR_MODE_TESTS: list[DiagnosticTestCase] = [
         command={},
         checks={"ok": Eq(1.0), "repairMode": Eq("None"), "repaired": Eq(False)},
         msg="validate should return repairMode: 'None' with no repair options",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     DiagnosticTestCase(
         "repair_and_fixMultikey_mode_fix_errors",
         command={"repair": True, "fixMultikey": True},
         checks={"ok": Eq(1.0), "repairMode": Eq("FixErrors"), "repaired": Eq(False)},
         msg="validate with repair+fixMultikey should return repairMode: 'FixErrors'",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     DiagnosticTestCase(
         "fixMultikey_alone_mode_adjust",
         command={"fixMultikey": True},
         checks={"ok": Eq(1.0), "repairMode": Eq("AdjustMultikey"), "repaired": Eq(False)},
         msg="validate with fixMultikey alone should return repairMode: 'AdjustMultikey'",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     DiagnosticTestCase(
         "repair_alone_mode_fix_errors",
         command={"repair": True},
         checks={"ok": Eq(1.0), "repairMode": Eq("FixErrors"), "repaired": Eq(False)},
         msg="validate with repair alone should return repairMode: 'FixErrors'",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

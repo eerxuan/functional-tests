@@ -41,6 +41,7 @@ ERROR_TESTS: list[AdminTestCase] = [
         },
         error_code=INVALID_OPTIONS_ERROR,
         msg="Setting multiple parameters in one call should be rejected",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     AdminTestCase(
         "unknown_parameter",
