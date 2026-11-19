@@ -367,7 +367,6 @@ COLLMOD_VALIDATOR_REGEX_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=REGEX_COMPILE_ERROR,
         msg="collMod should reject a validator regex pattern one byte over the limit",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

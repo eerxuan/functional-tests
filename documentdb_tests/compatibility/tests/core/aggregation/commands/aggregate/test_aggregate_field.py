@@ -121,7 +121,6 @@ AGGREGATE_FIELD_TYPE_REJECTION_TESTS: list[CommandTestCase] = [
         command={"aggregate": val, "pipeline": [], "cursor": {}},
         error_code=INVALID_NAMESPACE_ERROR,
         msg=f"aggregate should reject {tid} type",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         ("null", None),

@@ -64,7 +64,6 @@ KILLCURSORS_NULL_SUCCESS_TESTS: list[CommandTestCase] = [
             "ok": 1.0,
         },
         msg="killCursors should accept null maxTimeMS without error",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -111,7 +110,6 @@ KILLCURSORS_WRITECONCERN_TESTS: list[CommandTestCase] = [
             "ok": 1.0,
         },
         msg="killCursors should accept null writeConcern",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -127,7 +125,6 @@ KILLCURSORS_WRITECONCERN_TYPE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=TYPE_MISMATCH_ERROR,
         msg=f"killCursors should reject {tid} writeConcern",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         ("string", "majority"),

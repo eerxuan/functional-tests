@@ -150,7 +150,6 @@ GETMORE_MAX_TIME_MS_NON_INTEGER_ERROR_TESTS: list[CursorCommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="getMore should reject fractional double 2.5 as maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CursorCommandTestCase(
         "max_time_ms_non_int_double_0_1",
@@ -162,7 +161,6 @@ GETMORE_MAX_TIME_MS_NON_INTEGER_ERROR_TESTS: list[CursorCommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="getMore should reject fractional double 0.1 as maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CursorCommandTestCase(
         "max_time_ms_non_int_double_0_9",
@@ -174,7 +172,6 @@ GETMORE_MAX_TIME_MS_NON_INTEGER_ERROR_TESTS: list[CursorCommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="getMore should reject fractional double 0.9 as maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CursorCommandTestCase(
         "max_time_ms_non_int_decimal_fractional",
@@ -186,7 +183,6 @@ GETMORE_MAX_TIME_MS_NON_INTEGER_ERROR_TESTS: list[CursorCommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="getMore should reject fractional Decimal128 as maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CursorCommandTestCase(
         "max_time_ms_non_int_double_nan",
@@ -198,7 +194,6 @@ GETMORE_MAX_TIME_MS_NON_INTEGER_ERROR_TESTS: list[CursorCommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="getMore should reject double NaN as maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CursorCommandTestCase(
         "max_time_ms_non_int_double_neg_nan",
@@ -210,7 +205,6 @@ GETMORE_MAX_TIME_MS_NON_INTEGER_ERROR_TESTS: list[CursorCommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="getMore should reject double -NaN as maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CursorCommandTestCase(
         "max_time_ms_non_int_double_infinity",
@@ -222,7 +216,6 @@ GETMORE_MAX_TIME_MS_NON_INTEGER_ERROR_TESTS: list[CursorCommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="getMore should reject double Infinity as maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CursorCommandTestCase(
         "max_time_ms_non_int_double_neg_infinity",
@@ -234,7 +227,6 @@ GETMORE_MAX_TIME_MS_NON_INTEGER_ERROR_TESTS: list[CursorCommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="getMore should reject double -Infinity as maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CursorCommandTestCase(
         "max_time_ms_non_int_decimal_nan",
@@ -246,7 +238,6 @@ GETMORE_MAX_TIME_MS_NON_INTEGER_ERROR_TESTS: list[CursorCommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="getMore should reject Decimal128 NaN as maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CursorCommandTestCase(
         "max_time_ms_non_int_decimal_neg_nan",
@@ -258,7 +249,6 @@ GETMORE_MAX_TIME_MS_NON_INTEGER_ERROR_TESTS: list[CursorCommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="getMore should reject Decimal128 -NaN as maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CursorCommandTestCase(
         "max_time_ms_non_int_decimal_infinity",
@@ -270,7 +260,6 @@ GETMORE_MAX_TIME_MS_NON_INTEGER_ERROR_TESTS: list[CursorCommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="getMore should reject Decimal128 Infinity as maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CursorCommandTestCase(
         "max_time_ms_non_int_decimal_neg_infinity",
@@ -282,7 +271,6 @@ GETMORE_MAX_TIME_MS_NON_INTEGER_ERROR_TESTS: list[CursorCommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="getMore should reject Decimal128 -Infinity as maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CursorCommandTestCase(
         "max_time_ms_non_int_decimal_overflow_int64",
@@ -294,7 +282,6 @@ GETMORE_MAX_TIME_MS_NON_INTEGER_ERROR_TESTS: list[CursorCommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="getMore should reject Decimal128 that overflows int64 as maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

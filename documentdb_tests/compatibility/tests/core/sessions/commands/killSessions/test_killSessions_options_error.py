@@ -42,7 +42,6 @@ KILLSESSIONS_WRITECONCERN_TYPE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=TYPE_MISMATCH_ERROR,
         msg=f"killSessions should reject {tid} writeConcern",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         ("string", "majority"),

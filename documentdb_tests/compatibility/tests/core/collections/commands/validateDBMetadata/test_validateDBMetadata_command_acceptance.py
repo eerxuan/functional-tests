@@ -97,7 +97,6 @@ VALIDATE_DB_METADATA_NULL_SUCCESS_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": 1.0, "apiVersionErrors": []},
         msg="validateDBMetadata should succeed when maxTimeMS is null",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "null_read_concern",
@@ -122,7 +121,6 @@ VALIDATE_DB_METADATA_NULL_SUCCESS_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": 1.0, "apiVersionErrors": []},
         msg="validateDBMetadata should succeed when writeConcern is null",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

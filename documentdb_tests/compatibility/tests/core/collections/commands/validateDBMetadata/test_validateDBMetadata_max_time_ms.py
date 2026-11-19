@@ -168,7 +168,6 @@ VALIDATE_DB_METADATA_MAX_TIME_MS_ERROR_TESTS: list[CommandTestCase] = [
             },
             error_code=TYPE_MISMATCH_ERROR,
             msg=f"validateDBMetadata should reject {tid} maxTimeMS",
-            marks=(pytest.mark.requires(spec_since="8.2"),),
         )
         for tid, val in [
             ("string", "1000"),
@@ -195,7 +194,6 @@ VALIDATE_DB_METADATA_MAX_TIME_MS_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="validateDBMetadata should reject fractional double maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_err_fractional_decimal128",
@@ -206,7 +204,6 @@ VALIDATE_DB_METADATA_MAX_TIME_MS_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="validateDBMetadata should reject fractional Decimal128 maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_err_nan_double",
@@ -217,7 +214,6 @@ VALIDATE_DB_METADATA_MAX_TIME_MS_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="validateDBMetadata should reject NaN double maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_err_nan_decimal128",
@@ -228,7 +224,6 @@ VALIDATE_DB_METADATA_MAX_TIME_MS_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="validateDBMetadata should reject NaN Decimal128 maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_err_infinity_double",
@@ -239,7 +234,6 @@ VALIDATE_DB_METADATA_MAX_TIME_MS_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="validateDBMetadata should reject Infinity double maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_err_neg_infinity_double",
@@ -250,7 +244,6 @@ VALIDATE_DB_METADATA_MAX_TIME_MS_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="validateDBMetadata should reject -Infinity double maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_err_neg_infinity_decimal128",
@@ -261,7 +254,6 @@ VALIDATE_DB_METADATA_MAX_TIME_MS_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="validateDBMetadata should reject -Infinity Decimal128 maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_err_pos_infinity_decimal128",
@@ -272,7 +264,6 @@ VALIDATE_DB_METADATA_MAX_TIME_MS_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="validateDBMetadata should reject +Infinity Decimal128 maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_err_negative_int32",

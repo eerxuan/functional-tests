@@ -187,7 +187,6 @@ VALIDATE_DB_METADATA_WRITE_CONCERN_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=TYPE_MISMATCH_ERROR,
         msg="validateDBMetadata should reject non-document writeConcern",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

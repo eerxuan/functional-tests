@@ -124,7 +124,6 @@ INVALID_COLLECTION_NAME_TYPES: list[IndexTestCase] = [
 
 
 @pytest.mark.parametrize("test", pytest_params(INVALID_COLLECTION_NAME_TYPES))
-@pytest.mark.requires(spec_since="8.2")
 def test_listIndexes_invalid_collection_name_type(collection, test):
     """Test listIndexes rejects non-string collection name types."""
     collection.insert_one({"_id": 1})

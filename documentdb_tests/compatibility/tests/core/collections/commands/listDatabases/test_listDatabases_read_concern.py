@@ -51,7 +51,6 @@ CONCERN_ACCEPTED_TESTS: list[CommandTestCase] = [
         expected=basic_success,
         msg="writeConcern with null should be accepted",
         id="write_concern_null",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

@@ -129,7 +129,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_TYPE_REJECTED_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"count": ctx.collection, "maxTimeMS": "hello"},
         error_code=TYPE_MISMATCH_ERROR,
         msg="count should reject string for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_bool",
@@ -137,7 +136,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_TYPE_REJECTED_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"count": ctx.collection, "maxTimeMS": True},
         error_code=TYPE_MISMATCH_ERROR,
         msg="count should reject bool for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_array",
@@ -145,7 +143,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_TYPE_REJECTED_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"count": ctx.collection, "maxTimeMS": [1, 2]},
         error_code=TYPE_MISMATCH_ERROR,
         msg="count should reject array for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_object",
@@ -153,7 +150,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_TYPE_REJECTED_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"count": ctx.collection, "maxTimeMS": {"a": 1}},
         error_code=TYPE_MISMATCH_ERROR,
         msg="count should reject object for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_objectid",
@@ -161,7 +157,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_TYPE_REJECTED_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"count": ctx.collection, "maxTimeMS": ObjectId()},
         error_code=TYPE_MISMATCH_ERROR,
         msg="count should reject ObjectId for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_datetime",
@@ -172,7 +167,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_TYPE_REJECTED_TESTS: list[CommandTestCase] = [
         },
         error_code=TYPE_MISMATCH_ERROR,
         msg="count should reject datetime for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_timestamp",
@@ -183,7 +177,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_TYPE_REJECTED_TESTS: list[CommandTestCase] = [
         },
         error_code=TYPE_MISMATCH_ERROR,
         msg="count should reject Timestamp for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_binary",
@@ -194,7 +187,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_TYPE_REJECTED_TESTS: list[CommandTestCase] = [
         },
         error_code=TYPE_MISMATCH_ERROR,
         msg="count should reject Binary for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_regex",
@@ -205,7 +197,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_TYPE_REJECTED_TESTS: list[CommandTestCase] = [
         },
         error_code=TYPE_MISMATCH_ERROR,
         msg="count should reject Regex for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_code",
@@ -216,7 +207,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_TYPE_REJECTED_TESTS: list[CommandTestCase] = [
         },
         error_code=TYPE_MISMATCH_ERROR,
         msg="count should reject Code for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_code_with_scope",
@@ -227,7 +217,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_TYPE_REJECTED_TESTS: list[CommandTestCase] = [
         },
         error_code=TYPE_MISMATCH_ERROR,
         msg="count should reject Code with scope for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_minkey",
@@ -235,7 +224,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_TYPE_REJECTED_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"count": ctx.collection, "maxTimeMS": MinKey()},
         error_code=TYPE_MISMATCH_ERROR,
         msg="count should reject MinKey for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_maxkey",
@@ -243,7 +231,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_TYPE_REJECTED_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"count": ctx.collection, "maxTimeMS": MaxKey()},
         error_code=TYPE_MISMATCH_ERROR,
         msg="count should reject MaxKey for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -257,7 +244,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_REPRESENTABILITY_REJECTED_TESTS: list[CommandTes
         command=lambda ctx: {"count": ctx.collection, "maxTimeMS": 1.5},
         error_code=FAILED_TO_PARSE_ERROR,
         msg="count should reject fractional double for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_fractional_decimal128",
@@ -268,7 +254,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_REPRESENTABILITY_REJECTED_TESTS: list[CommandTes
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="count should reject fractional Decimal128 for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_nan_double",
@@ -276,7 +261,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_REPRESENTABILITY_REJECTED_TESTS: list[CommandTes
         command=lambda ctx: {"count": ctx.collection, "maxTimeMS": FLOAT_NAN},
         error_code=FAILED_TO_PARSE_ERROR,
         msg="count should reject NaN double for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_neg_nan_double",
@@ -284,7 +268,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_REPRESENTABILITY_REJECTED_TESTS: list[CommandTes
         command=lambda ctx: {"count": ctx.collection, "maxTimeMS": FLOAT_NEGATIVE_NAN},
         error_code=FAILED_TO_PARSE_ERROR,
         msg="count should reject -NaN double for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_nan_decimal128",
@@ -295,7 +278,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_REPRESENTABILITY_REJECTED_TESTS: list[CommandTes
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="count should reject NaN Decimal128 for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_neg_nan_decimal128",
@@ -306,7 +288,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_REPRESENTABILITY_REJECTED_TESTS: list[CommandTes
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="count should reject -NaN Decimal128 for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_infinity_double",
@@ -317,7 +298,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_REPRESENTABILITY_REJECTED_TESTS: list[CommandTes
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="count should reject Infinity double for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_neg_infinity_double",
@@ -328,7 +308,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_REPRESENTABILITY_REJECTED_TESTS: list[CommandTes
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="count should reject -Infinity double for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_infinity_decimal128",
@@ -339,7 +318,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_REPRESENTABILITY_REJECTED_TESTS: list[CommandTes
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="count should reject Infinity Decimal128 for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_neg_infinity_decimal128",
@@ -350,7 +328,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_REPRESENTABILITY_REJECTED_TESTS: list[CommandTes
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="count should reject -Infinity Decimal128 for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "type_maxtimems_exceeds_int64_decimal128",
@@ -361,7 +338,6 @@ COUNT_TYPE_STRICTNESS_MAXTIMEMS_REPRESENTABILITY_REJECTED_TESTS: list[CommandTes
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="count should reject Decimal128 exceeding int64 range for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

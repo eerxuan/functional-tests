@@ -89,7 +89,6 @@ COLLATION_FIND_EXPR_TESTS: list[CommandTestCase] = [
         },
         expected=[],
         msg="find $expr $in with field ref first arg should not use collation",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "find_expr_in_literal_uses_collation",

@@ -21,7 +21,6 @@ STARTSESSION_MAXTIMEMS_ACCEPTANCE_TESTS: list[CommandTestCase] = [
         command=lambda ctx, v=val: {"startSession": 1, "maxTimeMS": v},
         expected={"ok": Eq(1.0)},
         msg=f"startSession should accept {tid} as maxTimeMS value",
-        marks=(pytest.mark.requires(spec_since="8.2"),) if tid in ("null",) else (),
     )
     for tid, val in [
         ("int32_positive", 1000),

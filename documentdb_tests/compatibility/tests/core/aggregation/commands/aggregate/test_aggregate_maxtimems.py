@@ -195,7 +195,6 @@ AGGREGATE_MAXTIMEMS_ACCEPTANCE_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": Eq(1.0)},
         msg="aggregate should accept null maxTimeMS as unbounded",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "maxtimems_decimal128_trailing_zeros",
@@ -337,7 +336,6 @@ AGGREGATE_MAXTIMEMS_REJECTION_TESTS: list[CommandTestCase] = [
             },
             error_code=FAILED_TO_PARSE_ERROR,
             msg=f"aggregate should reject {tid} maxTimeMS",
-            marks=(pytest.mark.requires(spec_since="8.2"),),
         )
         for tid, val in [
             ("fractional_double", 1.5),

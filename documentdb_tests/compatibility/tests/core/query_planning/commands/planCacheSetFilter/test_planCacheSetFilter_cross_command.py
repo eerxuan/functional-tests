@@ -73,7 +73,6 @@ pytestmark = pytest.mark.admin
                 "query": {"a": 1},
             },
             id="distinct",
-            marks=(pytest.mark.requires(spec_since="8.2"),),
         ),
     ],
 )

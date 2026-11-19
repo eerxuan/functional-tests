@@ -13,8 +13,6 @@ from documentdb_tests.framework.executor import execute_command
 from documentdb_tests.framework.parametrize import pytest_params
 from documentdb_tests.framework.property_checks import Eq
 
-pytestmark = pytest.mark.requires(spec_since="8.2")
-
 # Property [writeConcern Null Acceptance]: null writeConcern is treated as omitted.
 STARTSESSION_WC_NULL_ACCEPTANCE_TESTS: list[CommandTestCase] = [
     CommandTestCase(

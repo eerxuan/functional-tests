@@ -15,7 +15,6 @@ from documentdb_tests.framework.bson_type_validator import (
 )
 from documentdb_tests.framework.error_codes import FAILED_TO_PARSE_ERROR, TYPE_MISMATCH_ERROR
 from documentdb_tests.framework.executor import execute_command
-from documentdb_tests.framework.parametrize import with_marks
 
 WRITE_CONCERN_PARAMS = [
     BsonTypeTestCase(
@@ -92,13 +91,7 @@ _ALL_PARAMS = WRITE_CONCERN_PARAMS + SUB_FIELD_PARAMS
 
 
 @pytest.mark.parametrize(
-    "bson_type,sample_value,spec",
-    # A null writeConcern is treated as omitted from 8.2 on.
-    with_marks(
-        generate_bson_acceptance_test_cases(_ALL_PARAMS),
-        ["accept_null_for_write_concern_field"],
-        pytest.mark.requires(spec_since="8.2"),
-    ),
+    "bson_type,sample_value,spec", generate_bson_acceptance_test_cases(_ALL_PARAMS)
 )
 def test_write_concern_bson_type_accepted(collection, bson_type, sample_value, spec):
     """Test the writeConcern field and sub-fields accept their supported BSON types."""

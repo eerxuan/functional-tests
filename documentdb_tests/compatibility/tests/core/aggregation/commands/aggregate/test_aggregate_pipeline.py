@@ -101,7 +101,6 @@ AGGREGATE_PIPELINE_ACCEPTANCE_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": Eq(1.0)},
         msg="aggregate should accept 1000 stages in a $lookup sub-pipeline",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "pipeline_unionwith_1000_stages",

@@ -63,7 +63,6 @@ COUNT_COLLECTION_TYPE_TESTS: list[CommandTestCase] = [
         },
         expected={"n": 2, "ok": 1.0},
         msg="count on view should apply pipeline, query, skip, and limit together",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "capped",
@@ -83,7 +82,6 @@ COUNT_COLLECTION_TYPE_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"count": ctx.collection, "query": {"x": 1}},
         expected={"n": 2, "ok": 1.0},
         msg="count with query should work on a timeseries collection",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "clustered",

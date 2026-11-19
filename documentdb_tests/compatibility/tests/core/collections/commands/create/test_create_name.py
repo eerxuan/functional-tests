@@ -273,7 +273,6 @@ CREATE_NAME_TYPE_ERROR_TESTS: list[CommandTestCase] = [
         command={"create": val},
         error_code=INVALID_NAMESPACE_ERROR,
         msg=f"{tid} name should fail",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         ("int32", 123),

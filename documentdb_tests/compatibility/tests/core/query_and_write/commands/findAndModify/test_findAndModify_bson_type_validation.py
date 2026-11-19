@@ -22,7 +22,6 @@ from documentdb_tests.framework.error_codes import (
     TYPE_MISMATCH_ERROR,
 )
 from documentdb_tests.framework.executor import execute_command
-from documentdb_tests.framework.parametrize import with_marks
 
 BSON_PARAMS = [
     BsonTypeTestCase(
@@ -193,18 +192,7 @@ BSON_PARAMS = [
 ]
 
 REJECTION_TESTS = generate_bson_rejection_test_cases(BSON_PARAMS)
-# The error codes for a wrong-typed findAndModify or maxTimeMS changed in 8.2.
-REJECTION_TESTS = with_marks(
-    REJECTION_TESTS,
-    [p.id for p in REJECTION_TESTS if p.values[2].id in ("findAndModify", "maxTimeMS")],
-    pytest.mark.requires(spec_since="8.2"),
-)
-# A null maxTimeMS or writeConcern is treated as omitted from 8.2 on.
-ACCEPTANCE_TESTS = with_marks(
-    generate_bson_acceptance_test_cases(BSON_PARAMS),
-    ["accept_null_for_maxTimeMS", "accept_null_for_writeConcern"],
-    pytest.mark.requires(spec_since="8.2"),
-)
+ACCEPTANCE_TESTS = generate_bson_acceptance_test_cases(BSON_PARAMS)
 
 
 def _build_command(collection_name, spec, sample_value):

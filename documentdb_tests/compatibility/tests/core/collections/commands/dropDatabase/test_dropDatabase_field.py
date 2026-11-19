@@ -46,7 +46,6 @@ NULL_OPTIONAL_FIELDS_TESTS: list[CommandTestCase] = [
         expected={"ok": 1.0},
         msg="Null writeConcern should succeed with default write concern",
         id="null_write_concern",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         command={"dropDatabase": 1, "comment": None},

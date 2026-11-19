@@ -188,15 +188,6 @@ DISTINCT_NULL_PARAMS_TESTS: list[CommandTestCase] = [
         command=lambda ctx, p=param: {"distinct": ctx.collection, "key": "x", p: None},
         expected={"values": ["a", "b"], "ok": 1.0},
         msg=f"distinct should treat {param}=null as omitted",
-        marks=(
-            (pytest.mark.requires(spec_since="8.2"),)
-            if tid
-            in (
-                "max_time_ms",
-                "read_concern",
-            )
-            else ()
-        ),
     )
     for tid, param in [
         ("query", "query"),

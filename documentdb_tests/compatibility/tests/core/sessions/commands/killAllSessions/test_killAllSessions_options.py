@@ -31,7 +31,6 @@ KILLALLSESSIONS_MAXTIMEMS_ACCEPTANCE_TESTS: list[CommandTestCase] = [
         command=lambda ctx, v=val: {"killAllSessions": [], "maxTimeMS": v},
         expected={"ok": 1.0},
         msg=f"killAllSessions should accept {tid} maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),) if tid in ("null",) else (),
     )
     for tid, val in [
         ("int32_zero", 0),
@@ -88,7 +87,6 @@ KILLALLSESSIONS_WRITECONCERN_ACCEPTANCE_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"killAllSessions": [], "writeConcern": None},
         expected={"ok": 1.0},
         msg="killAllSessions should accept null writeConcern",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

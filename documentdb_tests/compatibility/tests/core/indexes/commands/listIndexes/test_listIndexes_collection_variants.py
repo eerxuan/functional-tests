@@ -5,8 +5,6 @@ Covers regular, capped, timeseries, clustered collections, long names, special c
 system collections, system.buckets, rename, and comment field behavior.
 """
 
-import pytest
-
 from documentdb_tests.framework.assertions import assertSuccess, assertSuccessPartial
 from documentdb_tests.framework.executor import execute_command
 
@@ -246,7 +244,6 @@ def test_listIndexes_comment_string_succeeds(collection):
     assertSuccess(result, [{"v": 2, "key": {"_id": 1}, "name": "_id_"}])
 
 
-@pytest.mark.requires(spec_since="8.2")
 def test_listIndexes_comment_inherited_by_getMore(collection):
     """Test comment is inherited by subsequent getMore commands."""
     db = collection.database

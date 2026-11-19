@@ -41,7 +41,6 @@ DELETE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=INVALID_NAMESPACE_ERROR,
         msg="delete should reject non-string collection name",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "delete_field_empty_string",

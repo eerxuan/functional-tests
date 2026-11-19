@@ -57,7 +57,6 @@ AGGREGATE_WRITECONCERN_ACCEPTANCE_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": Eq(1.0)},
         msg="aggregate should accept null writeConcern",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "wc_accept_without_out_or_merge",

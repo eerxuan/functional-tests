@@ -36,7 +36,6 @@ FIND_FIELD_TESTS: list[FindFieldValidationTest] = [
         command={"find": 1},
         error_code=INVALID_NAMESPACE_ERROR,
         msg="find should reject non-string type for collection name field.",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     FindFieldValidationTest(
         "find_field_rejects_empty_string",

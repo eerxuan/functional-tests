@@ -55,7 +55,6 @@ KILLSESSIONS_MAXTIMEMS_TYPE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=TYPE_MISMATCH_ERROR,
         msg=f"killSessions should reject {tid} for maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         ("bool_true", True),
@@ -85,7 +84,6 @@ KILLSESSIONS_MAXTIMEMS_VALUE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg=f"killSessions should reject {tid} maxTimeMS",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         # Fractional values.

@@ -46,7 +46,6 @@ COLLMOD_WRITE_CONCERN_SUCCESS_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": Eq(1.0)},
         msg="collMod should treat a null writeConcern as omitted",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "empty_document",

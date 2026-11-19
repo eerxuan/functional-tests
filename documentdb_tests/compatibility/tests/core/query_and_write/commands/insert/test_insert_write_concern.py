@@ -63,7 +63,6 @@ VALID_WRITE_CONCERN_TESTS: list[WriteConcernTest] = [
         write_concern=None,
         expected={"ok": 1.0, "n": 1},
         msg="insert should accept null writeConcern as the default.",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

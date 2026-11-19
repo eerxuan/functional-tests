@@ -83,7 +83,6 @@ BINARY_ORDERING_TESTS: list[ExpressionTestCase] = [
         expression={"$eq": [Binary(b"hello", 0), Binary(b"hello", 5)]},
         expected=False,
         msg="Binary equality should distinguish identical data with different subtypes",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

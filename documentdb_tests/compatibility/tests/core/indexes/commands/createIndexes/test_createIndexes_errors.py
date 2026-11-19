@@ -493,7 +493,6 @@ def test_createIndexes_empty_string_collection_name(collection):
     assertFailureCode(result, INVALID_NAMESPACE_ERROR, "Empty collection name should fail")
 
 
-@pytest.mark.requires(spec_since="8.2")
 def test_createIndexes_non_string_collection_name_object(collection):
     """Test createIndexes with non-string collection name (object) fails."""
     result = execute_command(

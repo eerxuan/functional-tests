@@ -108,7 +108,6 @@ COUNT_NULL_SUCCESS_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"count": ctx.collection, "maxTimeMS": None},
         expected={"n": 3, "ok": 1.0},
         msg="count with maxTimeMS=null should be unbounded",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

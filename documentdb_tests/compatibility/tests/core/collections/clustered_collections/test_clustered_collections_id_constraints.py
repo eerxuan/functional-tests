@@ -79,7 +79,6 @@ def test_record_id_size_limit_boundary(collection):
         ),
     ],
 )
-@pytest.mark.requires(spec_since="8.2")
 def test_nan_duplicate_clustered_error(collection, first, second):
     """Test NaN duplicate _id produces clustered-specific error."""
     name = create_clustered(collection)
@@ -117,7 +116,6 @@ def test_nan_duplicate_clustered_error(collection, first, second):
         ),
     ],
 )
-@pytest.mark.requires(spec_since="8.2")
 def test_infinity_duplicate_clustered_error(collection, first, second):
     """Test Infinity duplicate _id produces clustered-specific error."""
     name = create_clustered(collection)

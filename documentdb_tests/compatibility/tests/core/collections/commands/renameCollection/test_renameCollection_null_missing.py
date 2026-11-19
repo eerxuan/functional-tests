@@ -87,7 +87,6 @@ RENAME_NULL_MISSING_SUCCESS_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": 1.0},
         msg="writeConcern=null should succeed",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
