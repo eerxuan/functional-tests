@@ -1,8 +1,0 @@
-"""Every test in this folder covers behavior added in spec 8.2.
-
-The $setUnion accumulator is new in MongoDB 8.1.
-"""
-
-from documentdb_tests.framework.preconditions import spec_gate_folder
-
-pytest_collection_modifyitems = spec_gate_folder(__file__, spec_since="8.2")
