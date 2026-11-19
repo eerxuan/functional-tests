@@ -288,54 +288,49 @@ When targets are discovered automatically (running `pytest` with no
 `--connection-string`), each test runs against every discovered target it
 applies to, so no manual selection is needed.
 
-### Spec Versions
+### Reference Version and Spec Versions
 
-A run is measured against one version of the reference spec, chosen with
-`--spec-version` (`8.0`, `8.2` or `8.3`, default `8.2`). The spec version decides
-which tests are in scope. It is separate from the target, so you can run any
-target against the `8.3` spec and see where it differs.
+Expected results are pinned to MongoDB 8.2.4, the version CI runs against.
+Every test except smoke tests always runs and expects the 8.2.4 answer,
+whatever `--spec-version` is set to.
 
-A test that covers behavior added in a later spec declares it with the same
-`requires` marker:
+Only smoke tests (`pytest.mark.smoke`) can select a target minor version,
+with `--spec-version` (`8.0`, `8.2` or `8.3`, default `8.2`). A smoke test for
+a feature added in a later version declares it with the `requires` marker:
 
 ```python
-@pytest.mark.requires(spec_since="8.3")   # in scope from spec 8.3 on
-@pytest.mark.requires(spec_until="8.2")   # behavior a later spec changed
+pytestmark = [pytest.mark.smoke, pytest.mark.requires(spec_since="8.3")]
 ```
 
-A test with no spec gate belongs to spec `8.0` and runs under every spec
-version. There is no `8.1` spec version: behavior added in 8.1 is gated with
-`spec_since="8.2"`. When a later spec changes an answer, gate the old answer
-with `spec_until` and the new one with `spec_since`, so a run never expects
-both. Out-of-scope tests are deselected and listed, with the gate that
-excluded them, in the report's `.deselected.json` sidecar. The JSON report
-records the run's spec version and each target's server version under `run`.
+`spec_until` works the same way for a feature a later version removed. A smoke
+test with no spec gate runs under every spec version. There is no `8.1` spec
+version: a feature added in 8.1 uses `spec_since="8.2"`. A spec gate on a test
+that is not a smoke test is a collection error.
 
-The gate works at three levels, and they combine (a folder gate and a test's
-own `requires(change_streams=True)` both apply; on the same key the closest
-level wins):
+Out-of-scope smoke tests are deselected and listed, with the gate that excluded
+them, in the report's `.deselected.json` sidecar. The JSON report records the
+run's spec version and each target's server version under `run`.
 
-- **Test or class:** decorate it with `@pytest.mark.requires(spec_since="8.3")`.
-- **File:** set `pytestmark = [pytest.mark.smoke, pytest.mark.requires(spec_since="8.3")]`.
-- **Folder:** for a feature whose whole folder is new in a spec, add a
-  `conftest.py` to that folder:
+The gate can be set on a smoke test, a smoke test file (`pytestmark`, as above)
+or a folder that holds only smoke tests, from the folder's `conftest.py`:
 
-  ```python
-  from documentdb_tests.framework.preconditions import spec_gate_folder
+```python
+from documentdb_tests.framework.preconditions import spec_gate_folder
 
-  pytest_collection_modifyitems = spec_gate_folder(__file__, spec_since="8.3")
-  ```
+pytest_collection_modifyitems = spec_gate_folder(__file__, spec_since="8.3")
+```
 
-  Every test file under the folder, including subfolders, gets the gate.
+Gates combine with capability gates such as `requires(change_streams=True)`;
+on the same key the closest level wins.
 
 ```bash
-# Run the 8.3 spec against the 8.3 dev server
+# Run the smoke tests for spec 8.3 against the 8.3 dev server
 docker compose -f dev/compose.yaml --profile mongo-standalone-8.3 up -d --wait
-pytest --connection-string mongodb://localhost:27019 --engine-name mongodb --spec-version 8.3
+pytest -m smoke --connection-string mongodb://localhost:27019 --engine-name mongodb --spec-version 8.3
 
-# Run the 8.0 spec against the 8.0 dev server
+# Run the smoke tests for spec 8.0 against the 8.0 dev server
 docker compose -f dev/compose.yaml --profile mongo-standalone-8.0 up -d --wait
-pytest --connection-string mongodb://localhost:27020 --engine-name mongodb --spec-version 8.0
+pytest -m smoke --connection-string mongodb://localhost:27020 --engine-name mongodb --spec-version 8.0
 ```
 
 ## Writing Tests

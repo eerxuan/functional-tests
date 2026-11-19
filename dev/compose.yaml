@@ -55,12 +55,12 @@ services:
       engine: mongodb
 
   # mongo-standalone-8.0: a standalone server on the 8.0 release, for runs
-  # scoped to the 8.0 spec (--spec-version 8.0). It has no x-test-target, so
-  # it is not auto-discovered and not part of the CI matrix; point pytest at it
-  # explicitly:
+  # scoped to the 8.0 spec (smoke tests only, --spec-version 8.0). It has no
+  # x-test-target, so it is not auto-discovered and not part of the CI
+  # matrix; point pytest at it explicitly:
   #
   #   docker compose -f dev/compose.yaml --profile mongo-standalone-8.0 up -d --wait
-  #   pytest --connection-string mongodb://localhost:27020 --engine-name mongodb \
+  #   pytest -m smoke --connection-string mongodb://localhost:27020 --engine-name mongodb \
   #     --spec-version 8.0
   mongo-standalone-8.0:
     image: mongo:8.0.38
@@ -75,12 +75,12 @@ services:
       retries: 10
 
   # mongo-standalone-8.3: a standalone server on the 8.3 release, for runs
-  # scoped to the 8.3 spec (--spec-version 8.3). It has no x-test-target, so
-  # it is not auto-discovered and not part of the CI matrix; point pytest at it
-  # explicitly:
+  # scoped to the 8.3 spec (smoke tests only, --spec-version 8.3). It has no
+  # x-test-target, so it is not auto-discovered and not part of the CI
+  # matrix; point pytest at it explicitly:
   #
   #   docker compose -f dev/compose.yaml --profile mongo-standalone-8.3 up -d --wait
-  #   pytest --connection-string mongodb://localhost:27019 --engine-name mongodb \
+  #   pytest -m smoke --connection-string mongodb://localhost:27019 --engine-name mongodb \
   #     --spec-version 8.3
   mongo-standalone-8.3:
     image: mongo:8.3.13
