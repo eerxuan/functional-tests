@@ -149,7 +149,6 @@ PROPERTY_TESTS: list[DiagnosticTestCase] = [
         "repairMode_is_string",
         checks={"repairMode": IsType("string")},
         msg="validate should return repairMode as a string",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -237,7 +236,6 @@ DETAILED_STRUCTURE_TESTS: list[DiagnosticTestCase] = [
             "indexDetails.x_1.spec": IsType("object"),
         },
         msg="indexDetails entries should have valid: true and spec as object",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     DiagnosticTestCase(
         "full_true_response",
@@ -254,7 +252,6 @@ DETAILED_STRUCTURE_TESTS: list[DiagnosticTestCase] = [
             "repairMode": Eq("None"),
         },
         msg="validate with full: true should return all standard response fields",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     DiagnosticTestCase(
         "metadata_true_response",
@@ -273,7 +270,6 @@ DETAILED_STRUCTURE_TESTS: list[DiagnosticTestCase] = [
         },
         msg="validate with metadata: true should return structural fields"
         " but omit document-count fields",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

@@ -55,7 +55,6 @@ RESPONSE_PROPERTY_TESTS: list[DiagnosticTestCase] = [
         id="uuid_is_binData",
         checks={"uuid": IsType("binData")},
         msg="uuid should be a binData (UUID) field",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

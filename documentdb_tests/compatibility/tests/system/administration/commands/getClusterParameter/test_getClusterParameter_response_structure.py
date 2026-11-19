@@ -49,7 +49,6 @@ PROPERTY_TESTS: list[AdministrationTestCase] = [
         command={"getClusterParameter": "*"},
         checks={"clusterParameters": Contains("_id", "fleDisableSubstringPreviewParameterLimits")},
         msg="Wildcard result should include 'fleDisableSubstringPreviewParameterLimits'",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

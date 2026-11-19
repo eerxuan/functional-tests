@@ -64,7 +64,6 @@ def test_autoCompact_admin_scope(database_client, collection, test):
 # autoCompact with a different config is rejected with a conflict error rather
 # than silently overriding the running config.
 @pytest.mark.no_parallel
-@pytest.mark.requires(spec_since="8.2")
 def test_autoCompact_reconfigure_conflict(collection):
     """Test autoCompact rejects a differing reconfigure while enabled."""
     ensure_autocompact_idle(collection)

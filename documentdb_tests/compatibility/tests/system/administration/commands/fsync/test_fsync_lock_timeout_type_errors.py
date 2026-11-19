@@ -26,7 +26,7 @@ from documentdb_tests.framework.executor import execute_admin_command
 from documentdb_tests.framework.parametrize import pytest_params
 from documentdb_tests.framework.test_constants import DECIMAL128_ONE_AND_HALF
 
-pytestmark = [pytest.mark.no_parallel, pytest.mark.requires(spec_since="8.2")]
+pytestmark = pytest.mark.no_parallel
 
 
 # Property [lock Type Strictness]: a non-numeric lock value produces a

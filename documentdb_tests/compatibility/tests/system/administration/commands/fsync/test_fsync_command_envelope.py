@@ -115,7 +115,6 @@ FSYNC_UNKNOWN_FIELD_ERROR_TESTS: list[CommandTestCase] = [
         error_code=UNRECOGNIZED_COMMAND_FIELD_ERROR,
         msg="fsync should reject an unknown top-level command field with an "
         "unrecognized-field error",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "case_variant_lock",
@@ -123,7 +122,6 @@ FSYNC_UNKNOWN_FIELD_ERROR_TESTS: list[CommandTestCase] = [
         error_code=UNRECOGNIZED_COMMAND_FIELD_ERROR,
         msg="fsync should reject a case variant of a known command field name "
         "with an unrecognized-field error",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "timeout_missing_millis_suffix",
@@ -131,7 +129,6 @@ FSYNC_UNKNOWN_FIELD_ERROR_TESTS: list[CommandTestCase] = [
         error_code=UNRECOGNIZED_COMMAND_FIELD_ERROR,
         msg="fsync should reject fsyncLockAcquisitionTimeout, which is missing the "
         "Millis suffix, as an unknown field",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
