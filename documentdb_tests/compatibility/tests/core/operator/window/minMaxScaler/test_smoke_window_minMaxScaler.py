@@ -5,7 +5,7 @@ import pytest
 from documentdb_tests.framework.assertions import assertCommandSupported
 from documentdb_tests.framework.executor import execute_command
 
-pytestmark = pytest.mark.smoke
+pytestmark = [pytest.mark.smoke, pytest.mark.requires(spec_since="8.2")]
 
 
 def test_smoke_window_minMaxScaler(collection):
