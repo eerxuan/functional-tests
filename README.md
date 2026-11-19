@@ -291,9 +291,9 @@ applies to, so no manual selection is needed.
 ### Spec Versions
 
 A run is measured against one version of the reference spec, chosen with
-`--spec-version` (`8.2` or `8.3`, default `8.2`). The spec version decides which
-tests are in scope. It is separate from the target, so you can run any target
-against the `8.3` spec and see where it differs.
+`--spec-version` (`8.0`, `8.2` or `8.3`, default `8.2`). The spec version decides
+which tests are in scope. It is separate from the target, so you can run any
+target against the `8.3` spec and see where it differs.
 
 A test that covers behavior added in a later spec declares it with the same
 `requires` marker:

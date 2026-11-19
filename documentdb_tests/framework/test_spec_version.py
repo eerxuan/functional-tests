@@ -19,6 +19,7 @@ pytest_plugins = ["pytester"]
 @pytest.mark.unit
 class TestUnmetSpec:
     def test_ungated_test_is_in_every_spec(self):
+        assert unmet_spec({}, "8.0") == {}
         assert unmet_spec({}, "8.2") == {}
         assert unmet_spec({}, "8.3") == {}
 
@@ -33,6 +34,14 @@ class TestUnmetSpec:
 
     def test_spec_until_is_in_its_own_spec(self):
         assert unmet_spec({"spec_until": "8.2"}, "8.2") == {}
+
+    def test_8_0_gates_skip_the_missing_8_1(self):
+        assert unmet_spec({"spec_since": "8.2"}, "8.0") == {"spec_since": "8.2"}
+        assert unmet_spec({"spec_until": "8.0"}, "8.2") == {"spec_until": "8.0"}
+
+    def test_8_1_is_not_a_spec_version(self):
+        with pytest.raises(RuntimeError, match="unknown spec version"):
+            unmet_spec({"spec_since": "8.1"}, "8.2")
 
     def test_capability_keys_are_ignored(self):
         assert unmet_spec({"change_streams": True}, "8.2") == {}
@@ -117,6 +126,17 @@ _FILES = {
         def test_until(engine_client):
             pass
     """,
+    "test_changed_in_8_2.py": """
+        import pytest
+
+        @pytest.mark.requires(spec_until="8.0")
+        def test_old_answer(engine_client):
+            pass
+
+        @pytest.mark.requires(spec_since="8.2")
+        def test_new_answer(engine_client):
+            pass
+    """,
     "new_op/conftest.py": _FOLDER_CONFTEST,
     "new_op/test_folder_gated.py": """
         def test_folder_gated(engine_client):
@@ -167,8 +187,9 @@ class TestSpecGatingInASession:
     def test_default_spec_is_8_2(self, run_tree):
         collected, reasons, header = run_tree()
         assert header["spec_version"] == "8.2"
-        assert collected == {"test_ungated", "test_until"}
+        assert collected == {"test_ungated", "test_until", "test_new_answer"}
         assert reasons == {
+            "test_old_answer": {"spec_until": "8.0"},
             "test_file_gated": {"spec_since": "8.3"},
             "test_folder_gated": {"spec_since": "8.3"},
             "test_folder_and_capability": {"spec_since": "8.3"},
@@ -178,10 +199,27 @@ class TestSpecGatingInASession:
         collected, reasons, header = run_tree("--spec-version=8.3")
         assert header["spec_version"] == "8.3"
         assert header["targets"] == [{"name": "mongodb", "engine": "mongodb", "version": None}]
-        assert collected == {"test_ungated", "test_file_gated", "test_folder_gated"}
+        assert collected == {
+            "test_ungated",
+            "test_new_answer",
+            "test_file_gated",
+            "test_folder_gated",
+        }
         assert reasons == {
             "test_until": {"spec_until": "8.2"},
+            "test_old_answer": {"spec_until": "8.0"},
             "test_folder_and_capability": {"change_streams": True},
+        }
+
+    def test_spec_8_0_runs_ungated_and_old_answer_tests(self, run_tree):
+        collected, reasons, header = run_tree("--spec-version=8.0")
+        assert header["spec_version"] == "8.0"
+        assert collected == {"test_ungated", "test_until", "test_old_answer"}
+        assert reasons == {
+            "test_new_answer": {"spec_since": "8.2"},
+            "test_file_gated": {"spec_since": "8.3"},
+            "test_folder_gated": {"spec_since": "8.3"},
+            "test_folder_and_capability": {"spec_since": "8.3"},
         }
 
     def test_unknown_spec_version_is_a_usage_error(self, pytester, run_tree):

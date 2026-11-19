@@ -159,8 +159,10 @@ REQUIRES_MARKER = "requires"
 CAPABILITIES = frozenset(_CAPABILITY_DESCRIPTIONS)
 
 # The reference spec versions a run can be scoped to, oldest first. A test with
-# no spec gate belongs to the oldest one.
-SPEC_VERSIONS: tuple[str, ...] = ("8.2", "8.3")
+# no spec gate belongs to the oldest one. 8.1 is not a spec version (it was a
+# rapid release with no published server image), so behavior added in 8.1 is
+# gated with spec_since="8.2".
+SPEC_VERSIONS: tuple[str, ...] = ("8.0", "8.2", "8.3")
 DEFAULT_SPEC_VERSION = "8.2"
 
 # requires(...) keys that gate on the run's spec version rather than on a
