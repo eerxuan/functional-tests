@@ -303,8 +303,11 @@ A test that covers behavior added in a later spec declares it with the same
 @pytest.mark.requires(spec_until="8.2")   # behavior a later spec changed
 ```
 
-A test with no spec gate belongs to spec `8.2` and runs under every spec
-version. Out-of-scope tests are deselected and listed, with the gate that
+A test with no spec gate belongs to spec `8.0` and runs under every spec
+version. There is no `8.1` spec version: behavior added in 8.1 is gated with
+`spec_since="8.2"`. When a later spec changes an answer, gate the old answer
+with `spec_until` and the new one with `spec_since`, so a run never expects
+both. Out-of-scope tests are deselected and listed, with the gate that
 excluded them, in the report's `.deselected.json` sidecar. The JSON report
 records the run's spec version and each target's server version under `run`.
 
@@ -329,6 +332,10 @@ level wins):
 # Run the 8.3 spec against the 8.3 dev server
 docker compose -f dev/compose.yaml --profile mongo-standalone-8.3 up -d --wait
 pytest --connection-string mongodb://localhost:27019 --engine-name mongodb --spec-version 8.3
+
+# Run the 8.0 spec against the 8.0 dev server
+docker compose -f dev/compose.yaml --profile mongo-standalone-8.0 up -d --wait
+pytest --connection-string mongodb://localhost:27020 --engine-name mongodb --spec-version 8.0
 ```
 
 ## Writing Tests
