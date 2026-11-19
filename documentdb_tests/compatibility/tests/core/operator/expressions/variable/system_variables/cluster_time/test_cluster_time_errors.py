@@ -65,7 +65,7 @@ REQUIRES_NO_CLUSTER_TIME = (pytest.mark.requires(cluster_time=False),)
 CLUSTER_TIME_UNAVAILABLE_TESTS: list[ExpressionTestCase] = [
     ExpressionTestCase(
         id="if_null_does_not_rescue",
-        marks=(*REQUIRES_NO_CLUSTER_TIME, pytest.mark.requires(spec_since="8.2")),
+        marks=REQUIRES_NO_CLUSTER_TIME,
         expression={"$ifNull": ["$$CLUSTER_TIME", "fallback"]},
         error_code=CLUSTER_TIME_NOT_AVAILABLE_ERROR,
         msg="$ifNull should not rescue an unavailable $$CLUSTER_TIME",
@@ -195,7 +195,6 @@ def test_cluster_time_rejected_in_literal_only_stage_parameter(
 
 @pytest.mark.aggregate
 @pytest.mark.requires(cluster_time=False)
-@pytest.mark.requires(spec_since="8.2")
 def test_cluster_time_unavailable_fails_on_empty_collection(collection):
     """Test the unavailability error fires at parse time on a collection with no documents."""
     result = execute_command(
@@ -216,7 +215,6 @@ def test_cluster_time_unavailable_fails_on_empty_collection(collection):
 
 @pytest.mark.requires(cluster_time=False)
 @pytest.mark.find
-@pytest.mark.requires(spec_since="8.2")
 def test_cluster_time_unavailable_in_find_expr(collection):
     """Test a find filter referencing $$CLUSTER_TIME fails without a cluster clock."""
     collection.insert_one({"_id": 1})
@@ -300,7 +298,6 @@ def test_cluster_time_resolves_in_find_and_modify_pipeline_without_a_cluster_clo
 
 @pytest.mark.aggregate
 @pytest.mark.requires(cluster_time=False)
-@pytest.mark.requires(spec_since="8.2")
 def test_cluster_time_unavailable_in_explain(collection):
     """Test explain of a pipeline referencing $$CLUSTER_TIME fails without a cluster clock."""
     result = execute_command(
@@ -324,7 +321,6 @@ def test_cluster_time_unavailable_in_explain(collection):
 
 @pytest.mark.aggregate
 @pytest.mark.requires(cluster_time=False)
-@pytest.mark.requires(spec_since="8.2")
 def test_cluster_time_unavailable_error_is_not_swallowed_by_a_view(collection):
     """Test querying a view whose pipeline references $$CLUSTER_TIME surfaces an error."""
     database = collection.database
@@ -575,7 +571,6 @@ def test_cluster_time_in_a_collection_validator_accepts_a_conforming_document(co
 
 @pytest.mark.aggregate
 @pytest.mark.requires(cluster_time=False)
-@pytest.mark.requires(spec_since="8.2")
 def test_cluster_time_in_a_redact_result_without_a_cluster_clock(collection):
     """Test the unavailability error precedes the $redact result check.
 

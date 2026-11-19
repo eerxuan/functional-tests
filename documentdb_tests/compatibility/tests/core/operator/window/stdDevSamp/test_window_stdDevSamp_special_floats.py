@@ -11,8 +11,6 @@ or 0 for finite values. For frames with 2+ elements, NaN/Inf poisoning behavior
 is identical to $stdDevPop.
 """
 
-import pytest
-
 from documentdb_tests.compatibility.tests.core.operator.window.utils.window_test_case import (
     run_window_operator,
 )
@@ -173,7 +171,6 @@ def test_stdDevSamp_nan_value_whole_partition(collection):
 # Property [Special Floats Sliding Window]: special floats in removable/sliding windows return null
 
 
-@pytest.mark.requires(spec_since="8.2")
 def test_stdDevSamp_infinity_sliding_returns_null(collection):
     """$stdDevSamp sliding window returns null when Infinity is in the current frame."""
     docs = [
@@ -204,7 +201,6 @@ def test_stdDevSamp_infinity_sliding_returns_null(collection):
     )
 
 
-@pytest.mark.requires(spec_since="8.2")
 def test_stdDevSamp_neg_infinity_sliding_returns_null(collection):
     """$stdDevSamp sliding window returns null when -Infinity is in the current frame."""
     docs = [
@@ -232,7 +228,6 @@ def test_stdDevSamp_neg_infinity_sliding_returns_null(collection):
     )
 
 
-@pytest.mark.requires(spec_since="8.2")
 def test_stdDevSamp_nan_sliding_returns_null(collection):
     """$stdDevSamp sliding window returns null when NaN is in the current frame."""
     docs = [
@@ -260,7 +255,6 @@ def test_stdDevSamp_nan_sliding_returns_null(collection):
     )
 
 
-@pytest.mark.requires(spec_since="8.2")
 def test_stdDevSamp_infinity_centered_sliding(collection):
     """$stdDevSamp centered sliding window [-1, 1] with Infinity in middle returns null."""
     docs = [

@@ -103,7 +103,6 @@ def test_now_in_distinct_expr_is_unavailable(collection):
 
 
 @pytest.mark.collection_mgmt
-@pytest.mark.requires(spec_since="8.2")
 def test_now_in_list_collections_expr_is_unavailable(collection):
     """Test $$NOW is rejected in a listCollections filter as an unavailable builtin variable."""
     collection.insert_one({"_id": 1})
@@ -122,7 +121,6 @@ def test_now_in_list_collections_expr_is_unavailable(collection):
 
 
 @pytest.mark.admin
-@pytest.mark.requires(spec_since="8.2")
 def test_now_in_list_databases_expr_is_unavailable(collection):
     """Test $$NOW is rejected in a listDatabases filter as an unavailable builtin variable."""
     result = execute_admin_command(

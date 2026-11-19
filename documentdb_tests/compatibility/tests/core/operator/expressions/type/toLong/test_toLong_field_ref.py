@@ -71,7 +71,6 @@ TOLONG_FIELD_REF_TESTS: list[ExpressionTestCase] = [
         expression={"$toLong": "$v"},
         doc={"v": Binary(b"\x0a")},
         expected=Int64(10),
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "nested_field",

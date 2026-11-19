@@ -144,7 +144,6 @@ CONVERT_OBJECT_FORM_TYPE_TESTS: list[ConvertTest] = [
         to={"type": "binData", "Subtype": 5},
         expected=struct.pack("<i", 42),
         msg="$convert should ignore case-mismatched 'Subtype' in object form",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

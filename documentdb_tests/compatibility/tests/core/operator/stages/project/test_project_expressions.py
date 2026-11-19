@@ -139,7 +139,6 @@ PROJECT_EXPRESSION_TESTS: list[StageTestCase] = [
         pipeline=[{"$project": {"r": {"$sigmoid": "$a"}}}],
         expected=[{"_id": 1, "r": 0.5}],
         msg="$sigmoid should work in $project",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Array.
     StageTestCase(

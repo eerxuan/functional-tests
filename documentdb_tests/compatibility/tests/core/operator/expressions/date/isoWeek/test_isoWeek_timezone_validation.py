@@ -63,7 +63,6 @@ ISOWEEK_TIMEZONE_VALIDATION_TESTS: list[ExpressionTestCase] = [
             expression={"$isoWeek": {"date": "$date", "timezone": val}},
             error_code=INVALID_TIMEZONE_TYPE_ERROR,
             msg=f"$isoWeek should reject a {tid} timezone",
-            marks=(pytest.mark.requires(spec_since="8.2"),),
         )
         for tid, val in [
             ("int", 5),

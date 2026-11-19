@@ -44,7 +44,6 @@ BOUNDARY_ERROR_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject INT64_MAX start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_int64_max",
@@ -52,7 +51,6 @@ BOUNDARY_ERROR_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject INT64_MAX end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -173,7 +171,6 @@ START_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject fractional double start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_fractional_decimal128",
@@ -181,7 +178,6 @@ START_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject fractional decimal128 start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_nan",
@@ -189,7 +185,6 @@ START_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject NaN start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_inf",
@@ -197,7 +192,6 @@ START_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject infinity start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_neg_inf",
@@ -205,7 +199,6 @@ START_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject -infinity start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_decimal128_nan",
@@ -213,7 +206,6 @@ START_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject decimal128 NaN start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_decimal128_inf",
@@ -221,7 +213,6 @@ START_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject decimal128 infinity start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_string",
@@ -229,7 +220,6 @@ START_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject string start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_bool",
@@ -237,7 +227,6 @@ START_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject bool start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_array",
@@ -245,7 +234,6 @@ START_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject array start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_object",
@@ -253,7 +241,6 @@ START_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject object start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -265,7 +252,6 @@ END_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject fractional double end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_fractional_decimal128",
@@ -273,7 +259,6 @@ END_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject fractional decimal128 end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_nan",
@@ -281,7 +266,6 @@ END_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject NaN end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_inf",
@@ -289,7 +273,6 @@ END_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject infinity end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_string",
@@ -297,7 +280,6 @@ END_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject string end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_bool",
@@ -305,7 +287,6 @@ END_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject bool end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_neg_inf",
@@ -313,7 +294,6 @@ END_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject -infinity end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_decimal128_nan",
@@ -321,7 +301,6 @@ END_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject decimal128 NaN end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_decimal128_inf",
@@ -329,7 +308,6 @@ END_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject decimal128 infinity end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_array",
@@ -337,7 +315,6 @@ END_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject array end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_object",
@@ -345,7 +322,6 @@ END_NOT_INTEGRAL_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject object end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -357,7 +333,6 @@ START_NEGATIVE_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NEGATIVE_ERROR,
         msg="$indexOfArray should reject negative start -1",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_neg_large",
@@ -365,7 +340,6 @@ START_NEGATIVE_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NEGATIVE_ERROR,
         msg="$indexOfArray should reject negative start -100",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_neg_int64",
@@ -373,7 +347,6 @@ START_NEGATIVE_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NEGATIVE_ERROR,
         msg="$indexOfArray should reject negative Int64 start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_neg_double",
@@ -381,7 +354,6 @@ START_NEGATIVE_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NEGATIVE_ERROR,
         msg="$indexOfArray should reject negative double start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_neg_decimal128",
@@ -389,7 +361,6 @@ START_NEGATIVE_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start"]},
         error_code=INDEX_OF_ARRAY_INDEX_NEGATIVE_ERROR,
         msg="$indexOfArray should reject negative decimal128 start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -401,7 +372,6 @@ END_NEGATIVE_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NEGATIVE_ERROR,
         msg="$indexOfArray should reject negative end -1",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_neg_large",
@@ -409,7 +379,6 @@ END_NEGATIVE_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NEGATIVE_ERROR,
         msg="$indexOfArray should reject negative end -100",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_neg_int64",
@@ -417,7 +386,6 @@ END_NEGATIVE_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NEGATIVE_ERROR,
         msg="$indexOfArray should reject negative Int64 end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_neg_double",
@@ -425,7 +393,6 @@ END_NEGATIVE_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NEGATIVE_ERROR,
         msg="$indexOfArray should reject negative double end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_neg_decimal128",
@@ -433,7 +400,6 @@ END_NEGATIVE_TESTS: list[ExpressionTestCase] = [
         expression={"$indexOfArray": ["$arr", "$search", "$start", "$end"]},
         error_code=INDEX_OF_ARRAY_INDEX_NEGATIVE_ERROR,
         msg="$indexOfArray should reject negative decimal128 end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -460,28 +426,24 @@ TEST_SUBSET_FOR_LITERAL: list[ExpressionTestCase] = [
         expression={"$indexOfArray": [[1, 2, 3], 1, 1.5]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject fractional double start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_neg_one",
         expression={"$indexOfArray": [[1, 2, 3], 1, -1]},
         error_code=INDEX_OF_ARRAY_INDEX_NEGATIVE_ERROR,
         msg="$indexOfArray should reject negative start -1",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "start_missing_field",
         expression={"$indexOfArray": [[1, 2, 3], 1, MISSING]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject missing field as start",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "end_missing_field",
         expression={"$indexOfArray": [[1, 2, 3], 1, 0, MISSING]},
         error_code=INDEX_OF_ARRAY_INDEX_NOT_INTEGRAL_ERROR,
         msg="$indexOfArray should reject missing field as end",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -554,7 +516,6 @@ NULL_INDEX_ERROR_TESTS: list[ExpressionTestCase] = [
 
 
 @pytest.mark.parametrize("test", pytest_params(NULL_INDEX_ERROR_TESTS))
-@pytest.mark.requires(spec_since="8.2")
 def test_indexOfArray_null_index_error(collection, test):
     """Test $indexOfArray rejects null as start or end index."""
     result = execute_expression(collection, test.expression)

@@ -182,7 +182,6 @@ SAMPLE_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": 0}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject int32 zero",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "zero_int64",
@@ -190,7 +189,6 @@ SAMPLE_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": INT64_ZERO}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject int64 zero",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "zero_double",
@@ -198,7 +196,6 @@ SAMPLE_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": DOUBLE_ZERO}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject double 0.0",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "zero_negative_double",
@@ -206,7 +203,6 @@ SAMPLE_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": DOUBLE_NEGATIVE_ZERO}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject double -0.0",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "zero_decimal128",
@@ -214,7 +210,6 @@ SAMPLE_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": DECIMAL128_ZERO}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject Decimal128('0')",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "zero_decimal128_neg",
@@ -222,7 +217,6 @@ SAMPLE_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": DECIMAL128_NEGATIVE_ZERO}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject Decimal128('-0')",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "zero_decimal128_neg_exp_neg",
@@ -230,7 +224,6 @@ SAMPLE_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": Decimal128("-0E-10")}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject Decimal128('-0E-10')",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "zero_decimal128_neg_exp_pos",
@@ -238,7 +231,6 @@ SAMPLE_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": Decimal128("-0E+10")}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject Decimal128('-0E+10')",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -284,7 +276,6 @@ SAMPLE_NAN_NEG_INF_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": FLOAT_NAN}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject double NaN",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "nan_decimal128",
@@ -292,7 +283,6 @@ SAMPLE_NAN_NEG_INF_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": DECIMAL128_NAN}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject Decimal128 NaN",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "neg_inf_double",
@@ -319,7 +309,6 @@ SAMPLE_FRACTIONAL_ROUND_TO_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": 0.5}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject double 0.5 (floors to 0)",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "frac_double_subnormal_min",
@@ -327,7 +316,6 @@ SAMPLE_FRACTIONAL_ROUND_TO_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": DOUBLE_MIN_SUBNORMAL}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject subnormal double (floors to 0)",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "frac_double_min_normal",
@@ -335,7 +323,6 @@ SAMPLE_FRACTIONAL_ROUND_TO_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": DOUBLE_MIN_NORMAL}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject smallest normal double (floors to 0)",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "frac_decimal128_half_bankers",
@@ -343,7 +330,6 @@ SAMPLE_FRACTIONAL_ROUND_TO_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": DECIMAL128_HALF}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject Decimal128 0.5 (banker's rounds to 0)",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "frac_decimal128_just_below_half",
@@ -351,7 +337,6 @@ SAMPLE_FRACTIONAL_ROUND_TO_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": DECIMAL128_JUST_BELOW_HALF}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject Decimal128 just below 0.5 (rounds to 0)",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "frac_decimal128_small_exponent",
@@ -359,7 +344,6 @@ SAMPLE_FRACTIONAL_ROUND_TO_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": DECIMAL128_SMALL_EXPONENT}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject Decimal128 with a small exponent (rounds to 0)",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "frac_decimal128_min_positive",
@@ -367,7 +351,6 @@ SAMPLE_FRACTIONAL_ROUND_TO_ZERO_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$sample": {"size": DECIMAL128_MIN_POSITIVE}}],
         error_code=SAMPLE_SIZE_NOT_POSITIVE_ERROR,
         msg="$sample should reject the smallest positive Decimal128 (rounds to 0)",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

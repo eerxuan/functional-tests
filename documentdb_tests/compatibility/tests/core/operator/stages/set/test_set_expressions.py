@@ -141,7 +141,6 @@ SET_EXPRESSION_TESTS: list[StageTestCase] = [
         pipeline=[{"$set": {"r": {"$sigmoid": "$a"}}}, {"$project": {"r": 1}}],
         expected=[{"_id": 1, "r": 0.5}],
         msg="$sigmoid should work in $set",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Array.
     StageTestCase(

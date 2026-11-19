@@ -46,7 +46,6 @@ CONVERT_EXPRESSION_ARGS_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": {"$add": [2, 3]}},
         expected=Binary(struct.pack("<i", 42), 5),
         msg="$convert should accept expression for to.subtype parameter",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "expr_args_byte_order",
@@ -55,7 +54,6 @@ CONVERT_EXPRESSION_ARGS_TESTS: list[ConvertTest] = [
         byte_order={"$concat": ["bi", "g"]},
         expected=struct.pack(">i", 42),
         msg="$convert should accept expression for byteOrder parameter",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "expr_args_format",

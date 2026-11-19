@@ -22,8 +22,6 @@ from .utils.replaceAll_common import (
     _expr,
 )
 
-pytestmark = pytest.mark.requires(spec_since="8.2")
-
 # Property [Type Strictness]: all three parameters must resolve to a string or null. Any other
 # type produces an error specific to the argument position.
 REPLACEALL_TYPE_ERROR_TESTS: list[ReplaceAllTest] = [

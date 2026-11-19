@@ -162,7 +162,6 @@ LOG_MIXED_TYPE_TESTS: list[ExpressionTestCase] = [
         expression={"$log": ["$value", "$base"]},
         expected=Decimal128("3.000000000000000000000000000000000"),
         msg="$log should return full-precision decimal128 three for int64 and decimal128 base",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "double_decimal",

@@ -18,7 +18,7 @@ from documentdb_tests.framework.bson_type_validator import (
     BsonTypeTestCase,
     generate_bson_acceptance_test_cases,
 )
-from documentdb_tests.framework.parametrize import pytest_params, with_marks
+from documentdb_tests.framework.parametrize import pytest_params
 from documentdb_tests.framework.test_constants import (
     DECIMAL128_TWO_AND_HALF,
     DOUBLE_TWO_AND_HALF,
@@ -48,12 +48,7 @@ RETURN_TYPE_DOUBLE_SPEC = [
     ),
 ]
 
-# Converting binData to a number is new in 8.1.
-RETURN_TYPE_DOUBLE_CASES = with_marks(
-    generate_bson_acceptance_test_cases(RETURN_TYPE_DOUBLE_SPEC),
-    ["accept_bin_data_for_toDouble_return_type"],
-    pytest.mark.requires(spec_since="8.2"),
-)
+RETURN_TYPE_DOUBLE_CASES = generate_bson_acceptance_test_cases(RETURN_TYPE_DOUBLE_SPEC)
 
 _DOUBLE_EXPR_FORMS = [
     pytest.param(lambda v: {"$toDouble": v}, id="toDouble"),
@@ -135,7 +130,6 @@ TODOUBLE_IDEMPOTENCY_TESTS: list[ExpressionTestCase] = [
         msg="$toDouble is idempotent for 8-byte binary",
         expression={"$toDouble": {"$toDouble": Binary(struct.pack("<d", 5.0))}},
         expected=5.0,
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

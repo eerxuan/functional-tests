@@ -115,7 +115,6 @@ LOG_DECIMAL_PRECISION_TESTS: list[ExpressionTestCase] = [
         expression={"$log": ["$value", "$base"]},
         expected=Decimal128("3.000000000000000000000000000000000"),
         msg="$log should return a full-precision decimal128 three for one thousand in base ten",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "decimal_precision_base2",
@@ -123,7 +122,6 @@ LOG_DECIMAL_PRECISION_TESTS: list[ExpressionTestCase] = [
         expression={"$log": ["$value", "$base"]},
         expected=Decimal128("5.999999999999999999999999999999999"),
         msg="$log should return a full-precision decimal128 near six for sixty-four in base two",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "decimal_min_positive_value",
@@ -132,7 +130,6 @@ LOG_DECIMAL_PRECISION_TESTS: list[ExpressionTestCase] = [
         expected=Decimal128("-6175.999999999999999999999999999999"),
         msg="$log should return a full-precision decimal128 near the exponent for the smallest "
         "positive decimal128 value in base ten",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

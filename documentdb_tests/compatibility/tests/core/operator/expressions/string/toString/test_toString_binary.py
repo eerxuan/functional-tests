@@ -48,14 +48,12 @@ TOSTRING_BINARY_TESTS: list[ExpressionTestCase] = [
         msg="Subtype 3 Binary is base64 encoded",
         expression={"$toString": Binary(b"hello", 3)},
         expected="aGVsbG8=",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "binary_sub5",
         msg="Subtype 5 Binary is base64 encoded",
         expression={"$toString": Binary(b"hello", 5)},
         expected="aGVsbG8=",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "binary_sub6",

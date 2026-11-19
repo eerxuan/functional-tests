@@ -40,7 +40,6 @@ GEONEAR_DISTANCE_FIELD_OMITTED_TESTS: list[StageTestCase] = [
             {"_id": 2, "loc": {"type": "Point", "coordinates": [1, 0]}},
         ],
         msg="$geoNear with distanceField omitted should produce no distance field",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

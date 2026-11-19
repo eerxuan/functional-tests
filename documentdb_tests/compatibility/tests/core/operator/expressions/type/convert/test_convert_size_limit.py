@@ -52,7 +52,6 @@ CONVERT_STRING_SIZE_LIMIT_ERROR_TESTS: list[ConvertTest] = [
         format="base64",
         error_code=CONVERSION_FAILURE_ERROR,
         msg="$convert should reject BinData-to-string when base64 output reaches the size limit",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # utf8 format: 16_777_216 bytes -> 16_777_216 chars produces a different
     # error code than other formats.
@@ -107,7 +106,6 @@ CONVERT_STRING_SIZE_LIMIT_ERROR_TESTS: list[ConvertTest] = [
         byte_order=lazy(lambda: "A" * STRING_SIZE_LIMIT_BYTES),
         error_code=STRING_SIZE_LIMIT_ERROR,
         msg="$convert should reject oversized string in byteOrder parameter",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

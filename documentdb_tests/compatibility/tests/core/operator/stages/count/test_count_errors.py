@@ -269,7 +269,6 @@ COUNT_STRING_VALIDATION_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$count": "_id"}],
         error_code=COUNT_FIELD_ID_RESERVED_ERROR,
         msg="$count should reject the exact string '_id'",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -359,7 +358,6 @@ COUNT_NONEXISTENT_COLLECTION_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$count": "_id"}],
         error_code=COUNT_FIELD_ID_RESERVED_ERROR,
         msg="$count _id reserved error should fire on a non-existent collection",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -408,7 +406,6 @@ COUNT_EMPTY_COLLECTION_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$count": "_id"}],
         error_code=COUNT_FIELD_ID_RESERVED_ERROR,
         msg="$count _id reserved error should fire on empty collection",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

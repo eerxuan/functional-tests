@@ -109,7 +109,6 @@ DAYOFMONTH_TIMEZONE_VALIDATION_TESTS: list[ExpressionTestCase] = [
             },
             error_code=INVALID_TIMEZONE_TYPE_ERROR,
             msg=f"$dayOfMonth should reject a {tid} timezone",
-            marks=(pytest.mark.requires(spec_since="8.2"),),
         )
         for tid, val in [
             ("int", 5),

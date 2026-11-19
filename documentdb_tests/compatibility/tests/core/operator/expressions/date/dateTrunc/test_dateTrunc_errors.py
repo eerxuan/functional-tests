@@ -93,7 +93,6 @@ DATETRUNC_DATE_TYPE_ERROR_TESTS: list[ExpressionTestCase] = [
             expression={"$dateTrunc": {"date": "$date", "unit": "day"}},
             error_code=INVALID_DATE_VALUE_ERROR,
             msg=f"$dateTrunc should reject a {tid} date",
-            marks=(pytest.mark.requires(spec_since="8.2"),),
         )
         for tid, val in [
             ("string", "2021"),
@@ -118,7 +117,6 @@ DATETRUNC_DATE_TYPE_ERROR_TESTS: list[ExpressionTestCase] = [
         expression={"$dateTrunc": {"date": "$date", "unit": "day"}},
         error_code=INVALID_DATE_VALUE_ERROR,
         msg="$dateTrunc should reject a false boolean date",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "date_single_date_array",
@@ -126,7 +124,6 @@ DATETRUNC_DATE_TYPE_ERROR_TESTS: list[ExpressionTestCase] = [
         expression={"$dateTrunc": {"date": "$date", "unit": "day"}},
         error_code=INVALID_DATE_VALUE_ERROR,
         msg="$dateTrunc should reject a single-element array containing a date",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "date_decimal128_infinity",
@@ -134,7 +131,6 @@ DATETRUNC_DATE_TYPE_ERROR_TESTS: list[ExpressionTestCase] = [
         expression={"$dateTrunc": {"date": "$date", "unit": "day"}},
         error_code=INVALID_DATE_VALUE_ERROR,
         msg="$dateTrunc should reject a Decimal128 Infinity date",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "date_decimal128_neg_infinity",
@@ -142,7 +138,6 @@ DATETRUNC_DATE_TYPE_ERROR_TESTS: list[ExpressionTestCase] = [
         expression={"$dateTrunc": {"date": "$date", "unit": "day"}},
         error_code=INVALID_DATE_VALUE_ERROR,
         msg="$dateTrunc should reject a Decimal128 -Infinity date",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -230,7 +225,6 @@ DATETRUNC_ARRAY_PATH_TESTS: list[ExpressionTestCase] = [
         expression={"$dateTrunc": {"date": "$a.b", "unit": "day"}},
         error_code=INVALID_DATE_VALUE_ERROR,
         msg="$dateTrunc should reject a composite array field path",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "single_element_array_path",
@@ -238,7 +232,6 @@ DATETRUNC_ARRAY_PATH_TESTS: list[ExpressionTestCase] = [
         expression={"$dateTrunc": {"date": "$a.b", "unit": "day"}},
         error_code=INVALID_DATE_VALUE_ERROR,
         msg="$dateTrunc should reject a single-element array field path",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

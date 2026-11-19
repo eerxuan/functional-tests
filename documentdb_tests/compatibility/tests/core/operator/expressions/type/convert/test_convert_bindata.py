@@ -72,7 +72,6 @@ CONVERT_BINDATA_CORE_TESTS: list[ConvertTest] = [
         to="binData",
         expected=struct.pack("<i", 42),
         msg="$convert should produce 4-byte binData from int",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "bindata_from_int_zero",
@@ -80,7 +79,6 @@ CONVERT_BINDATA_CORE_TESTS: list[ConvertTest] = [
         to="binData",
         expected=struct.pack("<i", 0),
         msg="$convert should produce 4-byte binData from int 0",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "bindata_from_int_negative",
@@ -88,7 +86,6 @@ CONVERT_BINDATA_CORE_TESTS: list[ConvertTest] = [
         to="binData",
         expected=struct.pack("<i", -1),
         msg="$convert should produce 4-byte binData from negative int",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "bindata_from_long",
@@ -96,7 +93,6 @@ CONVERT_BINDATA_CORE_TESTS: list[ConvertTest] = [
         to="binData",
         expected=struct.pack("<q", 42),
         msg="$convert should produce 8-byte binData from long",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "bindata_from_double",
@@ -104,7 +100,6 @@ CONVERT_BINDATA_CORE_TESTS: list[ConvertTest] = [
         to="binData",
         expected=struct.pack("<d", 3.14),
         msg="$convert should produce 8-byte binData from double (IEEE 754)",
-        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "bindata_from_bindata_identity",
