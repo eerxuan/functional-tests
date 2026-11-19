@@ -15,7 +15,7 @@ from documentdb_tests.framework.bson_type_validator import (
     BsonTypeTestCase,
     generate_bson_acceptance_test_cases,
 )
-from documentdb_tests.framework.parametrize import pytest_params
+from documentdb_tests.framework.parametrize import pytest_params, with_marks
 from documentdb_tests.framework.test_constants import MISSING
 
 # Property [Return Type]: $toInt always returns BSON type int for successful conversions
@@ -41,7 +41,12 @@ RETURN_TYPE_INT_SPEC = [
     ),
 ]
 
-RETURN_TYPE_INT_CASES = generate_bson_acceptance_test_cases(RETURN_TYPE_INT_SPEC)
+# Converting binData to a number is new in 8.1.
+RETURN_TYPE_INT_CASES = with_marks(
+    generate_bson_acceptance_test_cases(RETURN_TYPE_INT_SPEC),
+    ["accept_bin_data_for_toInt_return_type"],
+    pytest.mark.requires(spec_since="8.2"),
+)
 
 _INT_EXPR_FORMS = [
     pytest.param(lambda v: {"$toInt": v}, id="toInt"),
@@ -117,6 +122,7 @@ TOINT_IDEMPOTENCY_TESTS: list[ExpressionTestCase] = [
         msg="$toInt is idempotent for 4-byte binary",
         expression={"$toInt": {"$toInt": Binary(b"\x2a\x00\x00\x00", 0)}},
         expected=42,
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

@@ -212,6 +212,7 @@ GROUP_ACCUMULATOR_NULL_MISSING_TESTS: list[StageTestCase] = [
         pipeline=[{"$group": {"_id": None, "r": {"$setUnion": "$v"}}}],
         expected=[{"_id": None, "r": []}],
         msg="$setUnion with all-missing input should produce an empty array",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         id="concatarrays_all_missing_produces_empty",
@@ -219,6 +220,7 @@ GROUP_ACCUMULATOR_NULL_MISSING_TESTS: list[StageTestCase] = [
         pipeline=[{"$group": {"_id": None, "r": {"$concatArrays": "$v"}}}],
         expected=[{"_id": None, "r": []}],
         msg="$concatArrays with all-missing input should produce an empty array",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         id="stddevpop_all_null_produces_null",

@@ -146,6 +146,7 @@ GROUP_VALID_ACCUMULATOR_OPERATORS_TESTS: list[StageTestCase] = [
         pipeline=[{"$group": {"_id": "$v", "r": {"$setUnion": "$x"}}}],
         expected=[{"_id": "a", "r": [1]}],
         msg="$setUnion should be a valid accumulator in $group",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         id="accumulator_concatarrays",
@@ -153,6 +154,7 @@ GROUP_VALID_ACCUMULATOR_OPERATORS_TESTS: list[StageTestCase] = [
         pipeline=[{"$group": {"_id": "$v", "r": {"$concatArrays": "$x"}}}],
         expected=[{"_id": "a", "r": [1]}],
         msg="$concatArrays should be a valid accumulator in $group",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         id="accumulator_firstn",
@@ -319,6 +321,7 @@ GROUP_ARRAY_ACCUMULATION_TESTS: list[StageTestCase] = [
         ],
         expected=[{"_id": "a", "r": [1, 2, 3, 4]}],
         msg="$setUnion should union arrays across multiple documents",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         id="concatarrays_accumulates_across_docs",
@@ -330,6 +333,7 @@ GROUP_ARRAY_ACCUMULATION_TESTS: list[StageTestCase] = [
         pipeline=[{"$group": {"_id": "$v", "r": {"$concatArrays": "$x"}}}],
         expected=[{"_id": "a", "r": [1, 2, 3, 4, 5]}],
         msg="$concatArrays should concatenate arrays across multiple documents",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

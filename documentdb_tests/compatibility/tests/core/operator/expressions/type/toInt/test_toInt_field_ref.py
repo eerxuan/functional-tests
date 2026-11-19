@@ -68,6 +68,7 @@ TOINT_FIELD_REF_TESTS: list[ExpressionTestCase] = [
         expression={"$toInt": "$v"},
         doc={"v": Binary(b"\x2a\x00\x00\x00", 0)},
         expected=42,
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "nested_field",

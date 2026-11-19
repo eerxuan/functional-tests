@@ -221,6 +221,7 @@ SETISSUBSET_FIELD_NON_ARRAY_TESTS: list[ExpressionTestCase] = [
         expression={"$setIsSubset": ["$a", [1]]},
         error_code=SET_IS_SUBSET_FIRST_NOT_ARRAY_ERROR,
         msg="$setIsSubset should error when the first field resolves to int",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "field_resolves_string_first",
@@ -228,6 +229,7 @@ SETISSUBSET_FIELD_NON_ARRAY_TESTS: list[ExpressionTestCase] = [
         expression={"$setIsSubset": ["$a", [1]]},
         error_code=SET_IS_SUBSET_FIRST_NOT_ARRAY_ERROR,
         msg="$setIsSubset should error when the first field resolves to string",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ExpressionTestCase(
         "field_resolves_null_first",

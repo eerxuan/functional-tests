@@ -304,6 +304,7 @@ GEONEAR_QUERY_NEAR_ERROR_TESTS: list[StageTestCase] = [
         ],
         error_code=NEAR_NOT_ALLOWED_ERROR,
         msg="$geoNear query with $near should fail",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "query_near_sphere",
@@ -332,6 +333,7 @@ GEONEAR_QUERY_NEAR_ERROR_TESTS: list[StageTestCase] = [
         ],
         error_code=NEAR_NOT_ALLOWED_ERROR,
         msg="$geoNear query with $nearSphere should fail",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -356,6 +358,7 @@ GEONEAR_QUERY_TEXT_WHERE_ERROR_TESTS: list[StageTestCase] = [
         ],
         error_code=BAD_VALUE_ERROR,
         msg="$geoNear query with $text should fail",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "query_where",

@@ -43,6 +43,7 @@ LOOKUP_SPEC_SHAPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=UNRECOGNIZED_COMMAND_FIELD_ERROR,
         msg="$lookup should reject unknown fields in the spec",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "case_sensitive_field_name_produces_error",
@@ -251,6 +252,7 @@ LOOKUP_SPEC_DUPLICATE_FIELD_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=DUPLICATE_FIELD_ERROR,
         msg="$lookup should reject duplicate 'from' field",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "duplicate_as",
@@ -271,6 +273,7 @@ LOOKUP_SPEC_DUPLICATE_FIELD_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=DUPLICATE_FIELD_ERROR,
         msg="$lookup should reject duplicate 'as' field",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "duplicate_localField",
@@ -291,6 +294,7 @@ LOOKUP_SPEC_DUPLICATE_FIELD_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=DUPLICATE_FIELD_ERROR,
         msg="$lookup should reject duplicate 'localField' field",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "duplicate_foreignField",
@@ -311,6 +315,7 @@ LOOKUP_SPEC_DUPLICATE_FIELD_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=DUPLICATE_FIELD_ERROR,
         msg="$lookup should reject duplicate 'foreignField' field",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "duplicate_let",
@@ -331,6 +336,7 @@ LOOKUP_SPEC_DUPLICATE_FIELD_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=DUPLICATE_FIELD_ERROR,
         msg="$lookup should reject duplicate 'let' field",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "duplicate_pipeline",
@@ -351,6 +357,7 @@ LOOKUP_SPEC_DUPLICATE_FIELD_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=DUPLICATE_FIELD_ERROR,
         msg="$lookup should reject duplicate 'pipeline' field",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

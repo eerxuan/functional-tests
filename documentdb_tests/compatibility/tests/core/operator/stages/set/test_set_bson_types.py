@@ -215,6 +215,7 @@ SET_BSON_TYPE_TESTS: list[StageTestCase] = [
         pipeline=[{"$set": {"v": Binary(b"\x01\x02\x03", 5)}}],
         expected=[{"_id": 1, "v": Binary(b"\x01\x02\x03", 5)}],
         msg="$set should pass through a Binary with non-default subtype unchanged",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "bson_timestamp_zero",

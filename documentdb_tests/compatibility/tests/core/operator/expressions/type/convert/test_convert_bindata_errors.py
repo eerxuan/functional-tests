@@ -123,6 +123,7 @@ CONVERT_CROSS_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": 0},
         error_code=CONVERSION_FAILURE_ERROR,
         msg="$convert should reject BinData subtype 3 to subtype 0",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "cross_subtype_err_0_to_4",
@@ -130,6 +131,7 @@ CONVERT_CROSS_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": 4},
         error_code=CONVERSION_FAILURE_ERROR,
         msg="$convert should reject BinData subtype 0 to subtype 4",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "cross_subtype_err_128_to_0",
@@ -137,6 +139,7 @@ CONVERT_CROSS_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": 0},
         error_code=CONVERSION_FAILURE_ERROR,
         msg="$convert should reject BinData subtype 128 to subtype 0",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

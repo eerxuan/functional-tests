@@ -29,6 +29,8 @@ from documentdb_tests.framework.error_codes import (
 )
 from documentdb_tests.framework.parametrize import pytest_params
 
+pytestmark = pytest.mark.requires(spec_since="8.2")
+
 # Property [ByteOrder Errors]: invalid 'byteOrder' parameter values produce
 # specific error codes for wrong types or unrecognized strings.
 CONVERT_BYTE_ORDER_ERROR_TESTS: list[ConvertTest] = [

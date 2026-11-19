@@ -16,6 +16,8 @@ from documentdb_tests.framework.error_codes import (
 from documentdb_tests.framework.executor import execute_command
 from documentdb_tests.framework.parametrize import pytest_params
 
+pytestmark = pytest.mark.requires(spec_since="8.2")
+
 # Property [Top-Level Stage Position]: $rankFusion is rejected anywhere other
 # than the first stage of the top-level pipeline, whether an ordinary stage
 # precedes it or a second $rankFusion follows the first.

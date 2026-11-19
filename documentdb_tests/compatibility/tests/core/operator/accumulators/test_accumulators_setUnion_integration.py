@@ -12,6 +12,8 @@ from documentdb_tests.framework.assertions import assertResult
 from documentdb_tests.framework.executor import execute_command
 from documentdb_tests.framework.parametrize import pytest_params
 
+pytestmark = pytest.mark.requires(spec_since="8.2")
+
 # Property [SetUnion with Sum]: $setUnion collects unique array elements while
 # $sum independently computes a total from a numeric field.
 SETUNION_WITH_SUM_TESTS: list[AccumulatorTestCase] = [

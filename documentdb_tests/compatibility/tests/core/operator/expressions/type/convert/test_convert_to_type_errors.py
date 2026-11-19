@@ -288,6 +288,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": 1.5},
         error_code=CONVERT_SUBTYPE_NOT_INTEGER_ERROR,
         msg="$convert should reject fractional double as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_fractional_decimal",
@@ -295,6 +296,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": DECIMAL128_ONE_AND_HALF},
         error_code=CONVERT_SUBTYPE_NOT_INTEGER_ERROR,
         msg="$convert should reject fractional Decimal128 as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_nan",
@@ -302,6 +304,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": FLOAT_NAN},
         error_code=CONVERT_SUBTYPE_NOT_INTEGER_ERROR,
         msg="$convert should reject NaN as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_infinity",
@@ -309,6 +312,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": FLOAT_INFINITY},
         error_code=CONVERT_SUBTYPE_NOT_INTEGER_ERROR,
         msg="$convert should reject Infinity as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Out-of-range integer values.
     ConvertTest(
@@ -317,6 +321,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": -1},
         error_code=CONVERT_SUBTYPE_INVALID_RANGE_ERROR,
         msg="$convert should reject negative subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_256",
@@ -324,6 +329,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": 256},
         error_code=CONVERT_SUBTYPE_INVALID_RANGE_ERROR,
         msg="$convert should reject subtype 256",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_10_gap",
@@ -331,6 +337,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": 10},
         error_code=CONVERT_SUBTYPE_INVALID_RANGE_ERROR,
         msg="$convert should reject subtype 10 (in 10-127 gap)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_127_gap",
@@ -338,6 +345,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": 127},
         error_code=CONVERT_SUBTYPE_INVALID_RANGE_ERROR,
         msg="$convert should reject subtype 127 (in 10-127 gap)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Wrong type entirely.
     ConvertTest(
@@ -346,6 +354,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": "five"},
         error_code=CONVERT_SUBTYPE_TYPE_ERROR,
         msg="$convert should reject string as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_type_bool",
@@ -353,6 +362,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": True},
         error_code=CONVERT_SUBTYPE_TYPE_ERROR,
         msg="$convert should reject bool as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_type_null",
@@ -360,6 +370,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": None},
         error_code=CONVERT_SUBTYPE_TYPE_ERROR,
         msg="$convert should reject null as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_type_array",
@@ -367,6 +378,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": []},
         error_code=CONVERT_SUBTYPE_TYPE_ERROR,
         msg="$convert should reject array as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_type_object",
@@ -374,6 +386,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": {"a": 1}},
         error_code=CONVERT_SUBTYPE_TYPE_ERROR,
         msg="$convert should reject object as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_type_binary",
@@ -381,6 +394,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": Binary(b"x")},
         error_code=CONVERT_SUBTYPE_TYPE_ERROR,
         msg="$convert should reject Binary as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_type_objectid",
@@ -388,6 +402,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": ObjectId("507f1f77bcf86cd799439011")},
         error_code=CONVERT_SUBTYPE_TYPE_ERROR,
         msg="$convert should reject ObjectId as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_type_datetime",
@@ -395,6 +410,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": datetime(2024, 1, 1, tzinfo=timezone.utc)},
         error_code=CONVERT_SUBTYPE_TYPE_ERROR,
         msg="$convert should reject datetime as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_type_regex",
@@ -402,6 +418,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": Regex("abc")},
         error_code=CONVERT_SUBTYPE_TYPE_ERROR,
         msg="$convert should reject Regex as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_type_code",
@@ -409,6 +426,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": Code("function(){}")},
         error_code=CONVERT_SUBTYPE_TYPE_ERROR,
         msg="$convert should reject Code as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_type_timestamp",
@@ -416,6 +434,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": Timestamp(1, 1)},
         error_code=CONVERT_SUBTYPE_TYPE_ERROR,
         msg="$convert should reject Timestamp as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_type_minkey",
@@ -423,6 +442,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": MinKey()},
         error_code=CONVERT_SUBTYPE_TYPE_ERROR,
         msg="$convert should reject MinKey as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_type_maxkey",
@@ -430,6 +450,7 @@ CONVERT_SUBTYPE_ERROR_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": MaxKey()},
         error_code=CONVERT_SUBTYPE_TYPE_ERROR,
         msg="$convert should reject MaxKey as subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

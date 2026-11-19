@@ -44,6 +44,7 @@ GROUP_ACCUMULATOR_NULL_MISSING_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$group": {"_id": None, "r": {"$setUnion": "$v"}}}],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$setUnion should error on null input",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         id="setunion_non_array_error",
@@ -51,6 +52,7 @@ GROUP_ACCUMULATOR_NULL_MISSING_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$group": {"_id": None, "r": {"$setUnion": "$v"}}}],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$setUnion should error on non-array input",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         id="concatarrays_null_error",
@@ -58,6 +60,7 @@ GROUP_ACCUMULATOR_NULL_MISSING_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$group": {"_id": None, "r": {"$concatArrays": "$v"}}}],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$concatArrays should error on null input",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         id="concatarrays_non_array_error",
@@ -65,6 +68,7 @@ GROUP_ACCUMULATOR_NULL_MISSING_ERROR_TESTS: list[StageTestCase] = [
         pipeline=[{"$group": {"_id": None, "r": {"$concatArrays": "$v"}}}],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$concatArrays should error on non-array input",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

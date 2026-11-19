@@ -449,6 +449,7 @@ READ_CONCERN_ERROR_TESTS: list[ListClusterCatalogTestCase] = [
         },
         error_code=INVALID_OPTIONS_ERROR,
         msg=f"readConcern {level!r} should produce an invalid options error",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for level in ("majority", "linearizable", "available", "snapshot")
 ]

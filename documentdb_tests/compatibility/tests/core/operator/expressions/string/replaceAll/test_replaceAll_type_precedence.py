@@ -18,6 +18,8 @@ from .utils.replaceAll_common import (
     _expr,
 )
 
+pytestmark = pytest.mark.requires(spec_since="8.2")
+
 # Property [Type Error Precedence]: type errors take precedence over null propagation. When
 # multiple arguments have type errors, input is validated first, then find, then replacement.
 REPLACEALL_TYPE_PRECEDENCE_TESTS: list[ReplaceAllTest] = [

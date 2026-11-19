@@ -44,6 +44,7 @@ MERGE_ON_FIELD_MATCHING_TESTS: list[MergeTestCase] = [
             pipeline=[{"$merge": {"into": TARGET, "on": "key", "whenMatched": "merge"}}],
             expected=[{"_id": 1, "key": expected, "old": True, "val": "src"}],
             msg=f"$merge on field should match {tid} key values",
+            marks=(pytest.mark.requires(spec_since="8.2"),) if tid in ("null",) else (),
         )
         for tid, val, expected in [
             ("null", None, None),
@@ -114,6 +115,7 @@ MERGE_ON_FIELD_MATCHING_TESTS: list[MergeTestCase] = [
             {"_id": 2, "key": "abc", "old": True},
         ],
         msg="$merge on field name matching should be case-sensitive",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     MergeTestCase(
         "on_dotted_path",
@@ -165,6 +167,7 @@ MERGE_ON_FIELD_VALUE_CONSTRAINT_TESTS: list[MergeTestCase] = [
         error_code=IMMUTABLE_FIELD_ERROR,
         msg="$merge should produce an immutable field error when two documents have null"
         " in the on field with a non-sparse index",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

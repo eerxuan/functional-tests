@@ -46,6 +46,7 @@ LOOKUP_CONCISE_DEGRADATION_TESTS: list[LookupTestCase] = [
         ],
         msg="$lookup concise with null localField and foreignField should degrade "
         "to an uncorrelated subquery returning all foreign documents",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "empty_string_local_and_foreign_field_degrades_to_uncorrelated",
@@ -97,6 +98,7 @@ LOOKUP_CONCISE_DEGRADATION_TESTS: list[LookupTestCase] = [
         ],
         msg="$lookup concise with a dropped join constraint should still run the "
         "pipeline uncorrelated over every foreign document",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

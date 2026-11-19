@@ -11,6 +11,8 @@ from documentdb_tests.framework.assertions import assertResult
 from documentdb_tests.framework.executor import execute_command
 from documentdb_tests.framework.parametrize import pytest_params
 
+pytestmark = pytest.mark.requires(spec_since="8.2")
+
 # Property [ConcatArrays vs AddToSet]: $concatArrays preserves all elements
 # including duplicates while $addToSet deduplicates in the same $group.
 CONCATARRAYS_WITH_ADDTOSET_TESTS: list[AccumulatorTestCase] = [

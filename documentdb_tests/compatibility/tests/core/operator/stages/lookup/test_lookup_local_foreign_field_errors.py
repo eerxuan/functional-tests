@@ -43,6 +43,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (int)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_float_produces_type_error",
@@ -60,6 +61,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (float)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_bool_produces_type_error",
@@ -77,6 +79,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (bool)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_array_produces_type_error",
@@ -94,6 +97,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (array)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_document_produces_type_error",
@@ -111,6 +115,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (document)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_int64_produces_type_error",
@@ -128,6 +133,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (Int64)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_decimal128_produces_type_error",
@@ -145,6 +151,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (Decimal128)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_binary_produces_type_error",
@@ -162,6 +169,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (Binary)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_objectid_produces_type_error",
@@ -179,6 +187,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (ObjectId)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_regex_produces_type_error",
@@ -196,6 +205,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (Regex)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_code_produces_type_error",
@@ -213,6 +223,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (Code)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_code_with_scope_produces_type_error",
@@ -230,6 +241,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (Code with scope)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_timestamp_produces_type_error",
@@ -247,6 +259,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (Timestamp)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_minkey_produces_type_error",
@@ -264,6 +277,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (MinKey)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "localfield_maxkey_produces_type_error",
@@ -281,6 +295,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string localField (MaxKey)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_int_produces_type_error",
@@ -298,6 +313,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (int)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_float_produces_type_error",
@@ -315,6 +331,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (float)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_bool_produces_type_error",
@@ -332,6 +349,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (bool)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_array_produces_type_error",
@@ -349,6 +367,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (array)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_document_produces_type_error",
@@ -366,6 +385,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (document)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_int64_produces_type_error",
@@ -383,6 +403,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (Int64)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_decimal128_produces_type_error",
@@ -400,6 +421,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (Decimal128)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_binary_produces_type_error",
@@ -417,6 +439,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (Binary)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_objectid_produces_type_error",
@@ -434,6 +457,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (ObjectId)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_regex_produces_type_error",
@@ -451,6 +475,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (Regex)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_code_produces_type_error",
@@ -468,6 +493,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (Code)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_code_with_scope_produces_type_error",
@@ -485,6 +511,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (Code with scope)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_timestamp_produces_type_error",
@@ -502,6 +529,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (Timestamp)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_minkey_produces_type_error",
@@ -519,6 +547,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (MinKey)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "foreignfield_maxkey_produces_type_error",
@@ -536,6 +565,7 @@ LOOKUP_LOCAL_FOREIGN_FIELD_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string foreignField (MaxKey)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

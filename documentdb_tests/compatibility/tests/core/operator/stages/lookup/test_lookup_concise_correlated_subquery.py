@@ -739,6 +739,7 @@ LOOKUP_CONCISE_LET_BEHAVIOR_TESTS: list[LookupTestCase] = [
             },
         ],
         msg="$lookup concise with let: null should behave identically to omitting let",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_empty_doc_behaves_like_omitting_let",

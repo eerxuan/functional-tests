@@ -320,6 +320,7 @@ BINDATA_TESTS: list[ExpressionTestCase] = [
         expression={"$gte": [Binary(b"\x01", 5), Binary(b"\x01", 0)]},
         expected=True,
         msg="higher subtype >= lower subtype (same data)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

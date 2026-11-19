@@ -68,6 +68,7 @@ REGEXFINDALL_SIZE_LIMIT_ERROR_TESTS: list[RegexFindAllTest] = [
         regex=lazy(lambda: "a" * (REGEX_PATTERN_LIMIT_BYTES + 1)),
         error_code=REGEX_BAD_PATTERN_ERROR,
         msg="$regexFindAll should reject regex over the pattern length limit",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

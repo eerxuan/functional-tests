@@ -107,6 +107,7 @@ STRING_SIZE_LIMIT_ERROR_TESTS: list[ConcatTest] = [
         args=lazy(lambda: ["a" * (STRING_SIZE_LIMIT_BYTES // 1024)] * 1024),
         error_code=STRING_SIZE_LIMIT_ERROR,
         msg="$concat should reject many small operands summing to the size limit",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Operand produced by a nested expression rather than a literal.
     ConcatTest(

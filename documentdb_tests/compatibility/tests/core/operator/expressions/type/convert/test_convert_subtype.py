@@ -26,6 +26,7 @@ CONVERT_SUBTYPE_VALID_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": 0},
         expected=struct.pack("<i", 42),
         msg="$convert should accept subtype 0",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_five",
@@ -33,6 +34,7 @@ CONVERT_SUBTYPE_VALID_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": 5},
         expected=Binary(struct.pack("<i", 42), 5),
         msg="$convert should accept subtype 5",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_nine",
@@ -40,6 +42,7 @@ CONVERT_SUBTYPE_VALID_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": 9},
         expected=Binary(struct.pack("<i", 42), 9),
         msg="$convert should accept subtype 9",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_128",
@@ -47,6 +50,7 @@ CONVERT_SUBTYPE_VALID_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": 128},
         expected=Binary(struct.pack("<i", 42), 128),
         msg="$convert should accept subtype 128 (user-defined)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_255",
@@ -54,6 +58,7 @@ CONVERT_SUBTYPE_VALID_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": 255},
         expected=Binary(struct.pack("<i", 42), 255),
         msg="$convert should accept subtype 255 (user-defined)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_int64",
@@ -61,6 +66,7 @@ CONVERT_SUBTYPE_VALID_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": Int64(5)},
         expected=Binary(struct.pack("<i", 42), 5),
         msg="$convert should accept Int64 value for subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_double",
@@ -68,6 +74,7 @@ CONVERT_SUBTYPE_VALID_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": 5.0},
         expected=Binary(struct.pack("<i", 42), 5),
         msg="$convert should accept whole-number double for subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_decimal128",
@@ -75,6 +82,7 @@ CONVERT_SUBTYPE_VALID_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": Decimal128("5")},
         expected=Binary(struct.pack("<i", 42), 5),
         msg="$convert should accept Decimal128 value for subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_neg_zero_double",
@@ -82,6 +90,7 @@ CONVERT_SUBTYPE_VALID_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": DOUBLE_NEGATIVE_ZERO},
         expected=struct.pack("<i", 42),
         msg="$convert should accept double -0.0 as subtype 0",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "subtype_neg_zero_decimal",
@@ -89,6 +98,7 @@ CONVERT_SUBTYPE_VALID_TESTS: list[ConvertTest] = [
         to={"type": "binData", "subtype": DECIMAL128_NEGATIVE_ZERO},
         expected=struct.pack("<i", 42),
         msg="$convert should accept Decimal128('-0') as subtype 0",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -101,6 +111,7 @@ CONVERT_SUBTYPE_DEFAULT_TESTS: list[ConvertTest] = [
         to={"type": "binData"},
         expected=struct.pack("<i", 42),
         msg="$convert should default to subtype 0 when to is object form without subtype",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

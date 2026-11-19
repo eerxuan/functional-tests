@@ -41,6 +41,7 @@ REPLACEONE_TYPE_PRECEDENCE_TESTS: list[ReplaceOneTest] = [
         replacement="b",
         error_code=REPLACE_FIND_TYPE_ERROR,
         msg="$replaceOne precedence: null input type find",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Type error on replacement takes precedence over null input.
     ReplaceOneTest(
@@ -50,6 +51,7 @@ REPLACEONE_TYPE_PRECEDENCE_TESTS: list[ReplaceOneTest] = [
         replacement=123,
         error_code=REPLACE_REPLACEMENT_TYPE_ERROR,
         msg="$replaceOne precedence: null input type replacement",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Type error on replacement takes precedence over null find.
     ReplaceOneTest(
@@ -59,6 +61,7 @@ REPLACEONE_TYPE_PRECEDENCE_TESTS: list[ReplaceOneTest] = [
         replacement=123,
         error_code=REPLACE_REPLACEMENT_TYPE_ERROR,
         msg="$replaceOne precedence: null find type replacement",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Input type error takes precedence over find type error.
     ReplaceOneTest(
@@ -68,6 +71,7 @@ REPLACEONE_TYPE_PRECEDENCE_TESTS: list[ReplaceOneTest] = [
         replacement="b",
         error_code=REPLACE_INPUT_TYPE_ERROR,
         msg="$replaceOne precedence: input before find",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Input type error takes precedence over replacement type error.
     ReplaceOneTest(
@@ -77,6 +81,7 @@ REPLACEONE_TYPE_PRECEDENCE_TESTS: list[ReplaceOneTest] = [
         replacement=456,
         error_code=REPLACE_INPUT_TYPE_ERROR,
         msg="$replaceOne precedence: input before replacement",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Find type error takes precedence over replacement type error.
     ReplaceOneTest(
@@ -86,6 +91,7 @@ REPLACEONE_TYPE_PRECEDENCE_TESTS: list[ReplaceOneTest] = [
         replacement=456,
         error_code=REPLACE_FIND_TYPE_ERROR,
         msg="$replaceOne precedence: find before replacement",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # All three have type errors: input wins.
     ReplaceOneTest(
@@ -95,6 +101,7 @@ REPLACEONE_TYPE_PRECEDENCE_TESTS: list[ReplaceOneTest] = [
         replacement=789,
         error_code=REPLACE_INPUT_TYPE_ERROR,
         msg="$replaceOne precedence: all type errors",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Missing input does not shield type error on find.
     ReplaceOneTest(
@@ -104,6 +111,7 @@ REPLACEONE_TYPE_PRECEDENCE_TESTS: list[ReplaceOneTest] = [
         replacement="b",
         error_code=REPLACE_FIND_TYPE_ERROR,
         msg="$replaceOne precedence: missing input type find",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Missing input does not shield type error on replacement.
     ReplaceOneTest(
@@ -113,6 +121,7 @@ REPLACEONE_TYPE_PRECEDENCE_TESTS: list[ReplaceOneTest] = [
         replacement=123,
         error_code=REPLACE_REPLACEMENT_TYPE_ERROR,
         msg="$replaceOne precedence: missing input type replacement",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Missing find does not shield type error on replacement.
     ReplaceOneTest(
@@ -122,6 +131,7 @@ REPLACEONE_TYPE_PRECEDENCE_TESTS: list[ReplaceOneTest] = [
         replacement=123,
         error_code=REPLACE_REPLACEMENT_TYPE_ERROR,
         msg="$replaceOne precedence: missing find type replacement",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

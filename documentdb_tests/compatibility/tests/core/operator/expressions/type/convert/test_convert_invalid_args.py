@@ -276,6 +276,7 @@ CONVERT_DOLLAR_SIGN_ERROR_TESTS: list[ConvertTest] = [
         byte_order="$",
         error_code=INVALID_DOLLAR_FIELD_PATH,
         msg="$convert should reject bare '$' as byteOrder field path",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "dollar_double_byte_order",
@@ -284,6 +285,7 @@ CONVERT_DOLLAR_SIGN_ERROR_TESTS: list[ConvertTest] = [
         byte_order="$$",
         error_code=FAILED_TO_PARSE_ERROR,
         msg="$convert should reject '$$' as empty variable in byteOrder",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "dollar_bare_on_null",

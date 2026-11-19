@@ -46,6 +46,7 @@ _NULL_SKIPS_VALIDATION_PATTERNS: list[ConvertTest] = [
         byte_order="invalid_order",
         expected=None,
         msg="$convert should skip byteOrder validation when input is {prefix}",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "skips_invalid_byte_order_type",
@@ -54,6 +55,7 @@ _NULL_SKIPS_VALIDATION_PATTERNS: list[ConvertTest] = [
         byte_order=12345,
         expected=None,
         msg="$convert should skip byteOrder type validation when input is {prefix}",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "skips_invalid_subtype_value",
@@ -91,6 +93,7 @@ _NULL_TO_SKIPS_VALIDATION_PATTERNS: list[ConvertTest] = [
         byte_order="invalid",
         expected=None,
         msg="$convert should skip byteOrder validation when to is {prefix}",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "to_skips_wrong_type_byte_order",
@@ -99,6 +102,7 @@ _NULL_TO_SKIPS_VALIDATION_PATTERNS: list[ConvertTest] = [
         byte_order=12345,
         expected=None,
         msg="$convert should skip byteOrder type validation when to is {prefix}",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     ConvertTest(
         "to_skips_invalid_format",

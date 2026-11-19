@@ -177,6 +177,7 @@ CLUSTER_TIME_AVAILABILITY_TESTS: list[ExpressionTestCase] = [
 
 
 @pytest.mark.parametrize("test", pytest_params(CLUSTER_TIME_AVAILABILITY_TESTS))
+@pytest.mark.requires(spec_since="8.2")
 def test_cluster_time_availability(collection, test: ExpressionTestCase):
     """Test referencing $$CLUSTER_TIME without a cluster clock is a hard error."""
     result = execute_expression(collection, test.expression)

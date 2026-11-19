@@ -58,6 +58,7 @@ TOSTRING_BINARY_SIZE_ERROR_TESTS: list[ExpressionTestCase] = [
         msg="Binary whose base64 output reaches the 16 MB limit is rejected",
         expression=lazy(lambda: {"$toString": Binary(b"\x00" * _BINARY_AT_LIMIT_BYTES)}),
         error_code=CONVERSION_FAILURE_ERROR,
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

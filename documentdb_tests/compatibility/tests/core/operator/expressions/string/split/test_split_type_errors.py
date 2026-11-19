@@ -155,6 +155,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=42,
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject int as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_float",
@@ -162,6 +163,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=3.14,
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject float as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_long",
@@ -169,6 +171,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=Int64(1),
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject Int64 as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_decimal",
@@ -176,6 +179,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=Decimal128("1"),
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject Decimal128 as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_bool",
@@ -183,6 +187,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=True,
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject boolean as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_array",
@@ -190,6 +195,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=["a"],
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject array as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_object",
@@ -197,6 +203,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter={"a": 1},
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject object as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_binary",
@@ -204,6 +211,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=Binary(b"data"),
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject binary as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_date",
@@ -211,6 +219,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=datetime(2024, 1, 1, tzinfo=timezone.utc),
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject datetime as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_objectid",
@@ -218,6 +227,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=ObjectId("507f1f77bcf86cd799439011"),
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject ObjectId as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_regex",
@@ -225,6 +235,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=Regex("pat"),
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject regex as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_maxkey",
@@ -232,6 +243,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=MaxKey(),
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject MaxKey as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_minkey",
@@ -239,6 +251,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=MinKey(),
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject MinKey as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_timestamp",
@@ -246,6 +259,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=Timestamp(1, 1),
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject Timestamp as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_code",
@@ -253,6 +267,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=Code("function() {}"),
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject Code as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_code_scope",
@@ -260,6 +275,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=Code("function() {}", {"x": 1}),
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject Code with scope as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     SplitTest(
         "type_delim_nan",
@@ -267,6 +283,7 @@ SPLIT_DELIM_TYPE_ERROR_TESTS: list[SplitTest] = [
         delimiter=FLOAT_NAN,
         error_code=SPLIT_DELIMITER_TYPE_ERROR,
         msg="$split should reject NaN as delimiter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

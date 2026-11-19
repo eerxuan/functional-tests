@@ -43,6 +43,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (int)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_bool_produces_error",
@@ -60,6 +61,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (bool)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_array_produces_error",
@@ -77,6 +79,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (array)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_float_produces_error",
@@ -94,6 +97,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (float)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_dict_produces_error",
@@ -111,6 +115,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (document)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_int64_produces_error",
@@ -128,6 +133,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (Int64)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_decimal128_produces_error",
@@ -145,6 +151,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (Decimal128)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_binary_produces_error",
@@ -162,6 +169,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (Binary)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_objectid_produces_error",
@@ -179,6 +187,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (ObjectId)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_regex_produces_error",
@@ -196,6 +205,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (Regex)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_code_produces_error",
@@ -213,6 +223,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (Code)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_code_with_scope_produces_error",
@@ -230,6 +241,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (Code with scope)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_timestamp_produces_error",
@@ -247,6 +259,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (Timestamp)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_minkey_produces_error",
@@ -264,6 +277,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (MinKey)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_maxkey_produces_error",
@@ -281,6 +295,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-string as (MaxKey)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_null_treated_as_missing",
@@ -298,6 +313,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=MISSING_FIELD_ERROR,
         msg="$lookup should treat as=null as missing required field",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_omitted_produces_error",
@@ -314,6 +330,7 @@ LOOKUP_AS_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=MISSING_FIELD_ERROR,
         msg="$lookup should reject omitting the as parameter",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -353,6 +370,7 @@ LOOKUP_AS_PATH_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=FIELD_PATH_EMPTY_ERROR,
         msg="$lookup should reject as with an empty string",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "as_leading_dot_produces_error",

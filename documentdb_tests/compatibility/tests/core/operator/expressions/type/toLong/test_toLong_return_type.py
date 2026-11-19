@@ -19,7 +19,7 @@ from documentdb_tests.framework.bson_type_validator import (
     generate_bson_rejection_test_cases,
 )
 from documentdb_tests.framework.error_codes import CONVERSION_FAILURE_ERROR
-from documentdb_tests.framework.parametrize import pytest_params
+from documentdb_tests.framework.parametrize import pytest_params, with_marks
 from documentdb_tests.framework.test_constants import (
     MISSING,
 )
@@ -56,7 +56,12 @@ RETURN_TYPE_LONG_SPEC = [
     ),
 ]
 
-RETURN_TYPE_LONG_CASES = generate_bson_acceptance_test_cases(RETURN_TYPE_LONG_SPEC)
+# Converting binData to a number is new in 8.1.
+RETURN_TYPE_LONG_CASES = with_marks(
+    generate_bson_acceptance_test_cases(RETURN_TYPE_LONG_SPEC),
+    ["accept_bin_data_for_toLong_return_type"],
+    pytest.mark.requires(spec_since="8.2"),
+)
 REJECTION_LONG_CASES = generate_bson_rejection_test_cases(RETURN_TYPE_LONG_SPEC)
 
 _LONG_EXPR_FORMS = [
@@ -151,6 +156,7 @@ TOLONG_IDEMPOTENCY_TESTS: list[ExpressionTestCase] = [
         msg="$toLong is idempotent for 1-byte binary",
         expression={"$toLong": {"$toLong": Binary(b"\x05")}},
         expected=Int64(5),
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

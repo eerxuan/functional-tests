@@ -16,6 +16,8 @@ from documentdb_tests.compatibility.tests.core.operator.expressions.utils.utils 
 )
 from documentdb_tests.framework.parametrize import pytest_params
 
+pytestmark = pytest.mark.requires(spec_since="8.2")
+
 # Property [byteOrder Default]: omitting byteOrder or specifying "little"
 # produces identical little-endian byte ordering for numeric-to-binData and
 # binData-to-numeric conversions.

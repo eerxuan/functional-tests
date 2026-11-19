@@ -498,6 +498,7 @@ def test_lookup_nested_20_levels(collection):
 
 
 @pytest.mark.aggregate
+@pytest.mark.requires(spec_since="8.2")
 def test_lookup_sub_pipeline_1000_stages(collection):
     """Test $lookup sub-pipeline with 1000 stages."""
     foreign_name = f"{collection.name}_foreign"

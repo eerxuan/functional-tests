@@ -105,6 +105,7 @@ SORT_META_ACCEPTANCE_TESTS: list[StageTestCase] = [
         pipeline=[{"$sort": {"v": 1, "s": {"$meta": "searchScore"}}}],
         expected=[{"_id": 2, "v": 10}, {"_id": 1, "v": 20}],
         msg="$sort should accept {$meta: 'searchScore'} as a sort order value",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     StageTestCase(
         "accept_meta_textscore",
@@ -138,6 +139,7 @@ SORT_META_ACCEPTANCE_TESTS: list[StageTestCase] = [
         ],
         expected=[{"_id": 2, "f0": 10}, {"_id": 1, "f0": 20}],
         msg="$sort should not count $meta keys toward the 32-key compound sort limit",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

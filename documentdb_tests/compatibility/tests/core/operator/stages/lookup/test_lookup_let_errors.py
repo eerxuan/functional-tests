@@ -39,6 +39,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (int)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_string_produces_type_error",
@@ -56,6 +57,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (string)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_array_produces_type_error",
@@ -73,6 +75,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (array)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_bool_produces_type_error",
@@ -90,6 +93,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (bool)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_float_produces_type_error",
@@ -107,6 +111,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (float)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_int64_produces_type_error",
@@ -124,6 +129,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (Int64)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_decimal128_produces_type_error",
@@ -141,6 +147,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (Decimal128)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_binary_produces_type_error",
@@ -158,6 +165,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (Binary)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_objectid_produces_type_error",
@@ -175,6 +183,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (ObjectId)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_regex_produces_type_error",
@@ -192,6 +201,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (Regex)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_code_produces_type_error",
@@ -209,6 +219,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (Code)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_code_with_scope_produces_type_error",
@@ -226,6 +237,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (Code with scope)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_timestamp_produces_type_error",
@@ -243,6 +255,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (Timestamp)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_minkey_produces_type_error",
@@ -260,6 +273,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (MinKey)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     LookupTestCase(
         "let_maxkey_produces_type_error",
@@ -277,6 +291,7 @@ LOOKUP_LET_TYPE_ERROR_TESTS: list[LookupTestCase] = [
         ],
         error_code=TYPE_MISMATCH_ERROR,
         msg="$lookup should reject non-document let (MaxKey)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
