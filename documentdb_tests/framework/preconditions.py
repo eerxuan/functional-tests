@@ -27,17 +27,19 @@ defining its own). Adding an engine or a new topology (e.g. a search-backed
 deployment) is a new row in ``_CAPABILITIES_BY_PROFILE`` plus teaching
 ``_detect_topology`` to recognize it.
 
-The same marker also scopes a test to versions of the reference spec. A run
-picks one spec version (``--spec-version``), which decides which tests are in
-scope; it is independent of the target, so any target can be measured against
-any spec version::
+Expected results are pinned to one reference version (MongoDB 8.2.4, the CI
+target). The same marker also scopes a smoke test to versions of the
+reference spec. A run picks one spec version (``--spec-version``), which
+decides which smoke tests are in scope; it is independent of the target::
 
-    @pytest.mark.requires(spec_since="8.3")   # behavior added in spec 8.3
-    @pytest.mark.requires(spec_until="8.2")   # behavior a later spec changed
+    @pytest.mark.requires(spec_since="8.3")   # feature added in spec 8.3
+    @pytest.mark.requires(spec_until="8.2")   # feature a later spec removed
 
-A test with no spec gate belongs to the oldest spec and runs under every spec
-version. A whole folder is gated from its ``conftest.py`` with
-``spec_gate_folder``.
+Only smoke tests (``pytest.mark.smoke``) may carry a spec gate; a gate on any
+other test is a collection error (``check_spec_gates_on_smoke_only``), and
+every other test runs under every spec version. A smoke test with no spec gate
+belongs to the oldest spec and runs under every spec version. A folder of
+smoke tests is gated from its ``conftest.py`` with ``spec_gate_folder``.
 """
 
 from __future__ import annotations
@@ -328,6 +330,30 @@ def unmet_spec(required: dict[str, Any], spec_version: str) -> dict[str, str]:
     if until is not None and run > SPEC_VERSIONS.index(until):
         unmet["spec_until"] = until
     return unmet
+
+
+SMOKE_MARKER = "smoke"
+
+
+def check_spec_gates_on_smoke_only(items: Iterable[Any]) -> None:
+    """Raise a usage error if a test that is not a smoke test has a spec gate.
+
+    Only smoke tests are scoped by ``--spec-version``. Every other test always
+    runs and expects the pinned reference version's answer.
+    """
+    bad = [
+        item.nodeid
+        for item in items
+        if not item.get_closest_marker(SMOKE_MARKER)
+        and SPEC_KEYS & set(merged_requirements(item.iter_markers(REQUIRES_MARKER)))
+    ]
+    if bad:
+        shown = "\n  ".join(bad[:20]) + ("\n  ..." if len(bad) > 20 else "")
+        raise pytest.UsageError(
+            f"{len(bad)} test(s) have a spec_since/spec_until gate but are not smoke "
+            "tests. Only smoke tests (pytest.mark.smoke) can be scoped by "
+            f"--spec-version:\n  {shown}"
+        )
 
 
 def merged_requirements(markers: Iterable[Any]) -> dict[str, Any]:

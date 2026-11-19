@@ -111,6 +111,14 @@ _FILES = {
         def test_ungated(engine_client):
             pass
     """,
+    "test_smoke_ungated.py": """
+        import pytest
+
+        pytestmark = pytest.mark.smoke
+
+        def test_smoke_ungated(engine_client):
+            pass
+    """,
     "test_file_gated.py": """
         import pytest
 
@@ -122,29 +130,32 @@ _FILES = {
     "test_until.py": """
         import pytest
 
+        @pytest.mark.smoke
         @pytest.mark.requires(spec_until="8.2")
         def test_until(engine_client):
             pass
     """,
-    "test_changed_in_8_2.py": """
+    "test_smoke_new_in_8_2.py": """
         import pytest
 
-        @pytest.mark.requires(spec_until="8.0")
-        def test_old_answer(engine_client):
-            pass
+        pytestmark = [pytest.mark.smoke, pytest.mark.requires(spec_since="8.2")]
 
-        @pytest.mark.requires(spec_since="8.2")
-        def test_new_answer(engine_client):
+        def test_new_in_8_2(engine_client):
             pass
     """,
     "new_op/conftest.py": _FOLDER_CONFTEST,
     "new_op/test_folder_gated.py": """
+        import pytest
+
+        pytestmark = pytest.mark.smoke
+
         def test_folder_gated(engine_client):
             pass
     """,
     "new_op/test_folder_and_capability.py": """
         import pytest
 
+        @pytest.mark.smoke
         @pytest.mark.requires(change_streams=True)
         def test_folder_and_capability(engine_client):
             pass
@@ -187,9 +198,8 @@ class TestSpecGatingInASession:
     def test_default_spec_is_8_2(self, run_tree):
         collected, reasons, header = run_tree()
         assert header["spec_version"] == "8.2"
-        assert collected == {"test_ungated", "test_until", "test_new_answer"}
+        assert collected == {"test_ungated", "test_smoke_ungated", "test_until", "test_new_in_8_2"}
         assert reasons == {
-            "test_old_answer": {"spec_until": "8.0"},
             "test_file_gated": {"spec_since": "8.3"},
             "test_folder_gated": {"spec_since": "8.3"},
             "test_folder_and_capability": {"spec_since": "8.3"},
@@ -201,26 +211,43 @@ class TestSpecGatingInASession:
         assert header["targets"] == [{"name": "mongodb", "engine": "mongodb", "version": None}]
         assert collected == {
             "test_ungated",
-            "test_new_answer",
+            "test_smoke_ungated",
+            "test_new_in_8_2",
             "test_file_gated",
             "test_folder_gated",
         }
         assert reasons == {
             "test_until": {"spec_until": "8.2"},
-            "test_old_answer": {"spec_until": "8.0"},
             "test_folder_and_capability": {"change_streams": True},
         }
 
-    def test_spec_8_0_runs_ungated_and_old_answer_tests(self, run_tree):
+    def test_spec_8_0_drops_newer_smoke_tests_only(self, run_tree):
         collected, reasons, header = run_tree("--spec-version=8.0")
         assert header["spec_version"] == "8.0"
-        assert collected == {"test_ungated", "test_until", "test_old_answer"}
+        assert collected == {"test_ungated", "test_smoke_ungated", "test_until"}
         assert reasons == {
-            "test_new_answer": {"spec_since": "8.2"},
+            "test_new_in_8_2": {"spec_since": "8.2"},
             "test_file_gated": {"spec_since": "8.3"},
             "test_folder_gated": {"spec_since": "8.3"},
             "test_folder_and_capability": {"spec_since": "8.3"},
         }
+
+    def test_spec_gate_on_a_non_smoke_test_is_a_usage_error(self, pytester, run_tree):
+        pytester.makepyfile(
+            test_not_smoke=(
+                "import pytest\n\n"
+                '@pytest.mark.requires(spec_since="8.2")\n'
+                "def test_not_smoke(engine_client):\n"
+                "    pass\n"
+            )
+        )
+        result = pytester.runpytest_subprocess(
+            "--collect-only",
+            "--connection-string=mongodb://127.0.0.1:1",
+            "--engine-name=mongodb",
+        )
+        assert result.ret == pytest.ExitCode.USAGE_ERROR
+        result.stderr.fnmatch_lines(["*not smoke tests*", "*test_not_smoke*"])
 
     def test_unknown_spec_version_is_a_usage_error(self, pytester, run_tree):
         result = pytester.runpytest_subprocess("--collect-only", "--spec-version=9.9")

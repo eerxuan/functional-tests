@@ -37,6 +37,7 @@ from documentdb_tests.framework.preconditions import (  # noqa: E402
     DEFAULT_SPEC_VERSION,
     REQUIRES_MARKER,
     SPEC_VERSIONS,
+    check_spec_gates_on_smoke_only,
     detect_capabilities,
     known_engines,
     marker_spec,
@@ -78,9 +79,9 @@ def pytest_addoption(parser):
         action="store",
         default=DEFAULT_SPEC_VERSION,
         choices=SPEC_VERSIONS,
-        help="Reference spec version that decides which tests are in scope. "
-        "Independent of the target, so an engine can be measured against a "
-        f"newer spec. Default: {DEFAULT_SPEC_VERSION}.",
+        help="Reference spec version that decides which smoke tests are in "
+        "scope. Other tests always run and expect the pinned reference "
+        f"version's answer. Default: {DEFAULT_SPEC_VERSION}.",
     )
 
 
@@ -505,8 +506,9 @@ def pytest_collection_modifyitems(session, config, items):
     capabilities do not match what the test requires, so they do not run against
     a target they do not apply to (rather than appearing as skips). A target's
     capabilities are determined by its engine, topology, and connection source,
-    resolved per target at runtime (see ``framework.preconditions``). Tests whose
-    spec gate excludes the run's ``--spec-version`` are deselected the same way.
+    resolved per target at runtime (see ``framework.preconditions``). Smoke
+    tests whose spec gate excludes the run's ``--spec-version`` are deselected
+    the same way; a spec gate on any other test is a usage error.
 
     """
     # Deselect a gated test when the run's spec version is out of its scope, or
@@ -514,6 +516,7 @@ def pytest_collection_modifyitems(session, config, items):
     # Markers from the folder, module, class and test all apply. Each item is
     # parametrized over a target; probe each distinct target once.
     spec_version = config.getoption("--spec-version")
+    check_spec_gates_on_smoke_only(items)
     capabilities_by_target: dict[str, frozenset[str]] = {}
     kept: list = []
     requires_deselected: list = []
