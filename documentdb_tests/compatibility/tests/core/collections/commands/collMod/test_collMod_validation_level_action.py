@@ -136,6 +136,7 @@ COLLMOD_VALIDATION_ACTION_SUCCESS_TESTS: list[CommandTestCase] = [
             command=lambda ctx, v=action: {"collMod": ctx.collection, "validationAction": v},
             expected={"ok": Eq(1.0)},
             msg=f"collMod should accept the {action} validationAction",
+            marks=(pytest.mark.requires(spec_since="8.2"),) if action in ("errorAndLog",) else (),
         )
         for action in ["error", "warn", "errorAndLog"]
     ],

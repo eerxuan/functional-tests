@@ -33,6 +33,7 @@ STARTSESSION_WC_TYPE_REJECTION_TESTS: list[CommandTestCase] = [
         command=lambda ctx, v=val: {"startSession": 1, "writeConcern": v},
         error_code=TYPE_MISMATCH_ERROR,
         msg=f"startSession should reject {tid} writeConcern with type mismatch error",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         ("string", "majority"),

@@ -120,6 +120,7 @@ DEST_IS_VIEW_TESTS: list[CommandTestCase] = [
         },
         error_code=COMMAND_NOT_SUPPORTED_ON_VIEW_ERROR,
         msg="A view as destination should produce view error, not namespace exists",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

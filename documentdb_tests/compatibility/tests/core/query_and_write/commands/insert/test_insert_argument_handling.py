@@ -46,6 +46,7 @@ TESTS: list[FieldValidationTest] = [
         command={"insert": 1, "documents": [{"_id": 1}]},
         error_code=INVALID_NAMESPACE_ERROR,
         msg="insert should reject non-string type for collection name field.",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     FieldValidationTest(
         "empty_string_collection_name",

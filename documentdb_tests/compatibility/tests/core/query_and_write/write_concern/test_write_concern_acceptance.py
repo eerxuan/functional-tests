@@ -209,6 +209,7 @@ def test_write_concern_accepted(collection, test: CommandTestCase):
     assertResult(result, expected=test.expected, msg=test.msg, raw_res=True)
 
 
+@pytest.mark.requires(spec_since="8.2")
 def test_write_concern_null_equivalent_to_omitted(collection):
     """Test writeConcern null produces the same response as omitting writeConcern."""
     collection.insert_many([{"_id": 1, "a": 0}, {"_id": 2, "a": 0}])

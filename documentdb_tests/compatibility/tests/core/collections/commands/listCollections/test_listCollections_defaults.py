@@ -113,6 +113,7 @@ NULL_AND_MISSING_TESTS: list[CommandTestCase] = [
             "cursor.firstBatch.0.name": Eq(ctx.collection),
         },
         msg="writeConcern=null should succeed (treated as omitted)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         docs=[{"_id": 1}],
@@ -124,6 +125,7 @@ NULL_AND_MISSING_TESTS: list[CommandTestCase] = [
             "cursor.firstBatch.0.name": Eq(ctx.collection),
         },
         msg="maxTimeMS=null should succeed with no time limit",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         docs=[{"_id": 1}],
@@ -161,6 +163,7 @@ NULL_AND_MISSING_TESTS: list[CommandTestCase] = [
             "cursor.firstBatch.0.name": Eq(ctx.collection),
         },
         msg="All optional parameters null should succeed with defaults",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         docs=[{"_id": 1}],

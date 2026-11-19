@@ -156,6 +156,7 @@ DISTINCT_WRITE_CONCERN_TESTS: list[CommandTestCase] = [
         },
         expected={"values": ["a"], "ok": 1.0},
         msg="distinct should treat writeConcern null as omitted",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     *[
         CommandTestCase(
@@ -168,6 +169,7 @@ DISTINCT_WRITE_CONCERN_TESTS: list[CommandTestCase] = [
             },
             error_code=TYPE_MISMATCH_ERROR,
             msg=f"distinct should reject {tid} as writeConcern",
+            marks=(pytest.mark.requires(spec_since="8.2"),),
         )
         for tid, val in [
             ("string", "majority"),
@@ -233,6 +235,7 @@ DISTINCT_MAXTIMEMS_ERROR_TESTS: list[CommandTestCase] = [
             },
             error_code=FAILED_TO_PARSE_ERROR,
             msg=f"distinct should reject {tid} as maxTimeMS",
+            marks=(pytest.mark.requires(spec_since="8.2"),),
         )
         for tid, val in [
             ("fractional", 1.5),
@@ -258,6 +261,7 @@ DISTINCT_MAXTIMEMS_ERROR_TESTS: list[CommandTestCase] = [
             },
             error_code=TYPE_MISMATCH_ERROR,
             msg=f"distinct should reject {tid} as maxTimeMS",
+            marks=(pytest.mark.requires(spec_since="8.2"),),
         )
         for tid, val in [
             ("string", "hello"),

@@ -37,6 +37,7 @@ STARTSESSION_MAXTIMEMS_TYPE_REJECTION_TESTS: list[CommandTestCase] = [
         command=lambda ctx, v=val: {"startSession": 1, "maxTimeMS": v},
         error_code=TYPE_MISMATCH_ERROR,
         msg=f"startSession should reject {tid} maxTimeMS with type mismatch error",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         ("bool_true", True),
@@ -94,12 +95,14 @@ STARTSESSION_MAXTIMEMS_FRACTIONAL_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"startSession": 1, "maxTimeMS": 0.5},
         error_code=FAILED_TO_PARSE_ERROR,
         msg="startSession should reject fractional maxTimeMS 0.5",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "maxtimems_fractional_100_5",
         command=lambda ctx: {"startSession": 1, "maxTimeMS": 100.5},
         error_code=FAILED_TO_PARSE_ERROR,
         msg="startSession should reject fractional maxTimeMS 100.5",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

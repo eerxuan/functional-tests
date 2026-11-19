@@ -223,6 +223,7 @@ CREATE_CLUSTERED_NAME_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": 1.0},
         msg="Empty name string should succeed",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="name_null_bytes",
@@ -236,6 +237,7 @@ CREATE_CLUSTERED_NAME_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": 1.0},
         msg="Name with null bytes should succeed",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="name_dots",

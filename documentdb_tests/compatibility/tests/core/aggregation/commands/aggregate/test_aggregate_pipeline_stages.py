@@ -521,6 +521,7 @@ AGGREGATE_STAGE_WIRING_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": Eq(1.0), "cursor": {"firstBatch": Eq([{"_id": 1, "x": 10}])}},
         msg="aggregate should dispatch $rankFusion stage",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     # Collection-agnostic stages.
     CommandTestCase(

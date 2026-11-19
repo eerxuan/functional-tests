@@ -72,6 +72,7 @@ COMPACT_WRITE_CONCERN_REJECTION_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"compact": ctx.collection, "writeConcern": "majority"},
         error_code=TYPE_MISMATCH_ERROR,
         msg="writeConcern as string should be rejected as wrong type",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "write_concern_int",
@@ -79,6 +80,7 @@ COMPACT_WRITE_CONCERN_REJECTION_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"compact": ctx.collection, "writeConcern": 1},
         error_code=TYPE_MISMATCH_ERROR,
         msg="writeConcern as int should be rejected as wrong type",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "write_concern_bool",
@@ -86,6 +88,7 @@ COMPACT_WRITE_CONCERN_REJECTION_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"compact": ctx.collection, "writeConcern": True},
         error_code=TYPE_MISMATCH_ERROR,
         msg="writeConcern as bool should be rejected as wrong type",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "write_concern_array",
@@ -93,6 +96,7 @@ COMPACT_WRITE_CONCERN_REJECTION_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"compact": ctx.collection, "writeConcern": [{"w": 1}]},
         error_code=TYPE_MISMATCH_ERROR,
         msg="writeConcern as array should be rejected as wrong type",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

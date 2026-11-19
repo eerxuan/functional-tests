@@ -568,6 +568,7 @@ COLLATION_EXPR_IN_ASYMMETRY_TESTS: list[CommandTestCase] = [
         },
         expected=[],
         msg="$expr $in with field ref first arg in $match should not use collation",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "expr_in_match_literal_uses_collation",

@@ -158,6 +158,7 @@ COLLMOD_TIMESERIES_CROSS_GROUP_TESTS: list[CommandTestCase] = [
         expected={"ok": Eq(1.0)},
         msg="collMod should apply a timeseries modification and a top-level expireAfterSeconds "
         "on a time series collection",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "timeseries_and_comment",

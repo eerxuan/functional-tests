@@ -279,6 +279,7 @@ def test_getMore_max_time_ms_semantic_tailable(collection, test_case: CursorComm
 
 # Property [maxTimeMS Null Bypass]: maxTimeMS=null bypasses the semantic check
 # that otherwise rejects maxTimeMS on non-awaitData cursors.
+@pytest.mark.requires(spec_since="8.2")
 def test_getMore_max_time_ms_null_bypasses_semantic_check(collection):
     """Test getMore maxTimeMS=null bypasses the non-awaitData semantic check."""
     collection.insert_many([{"_id": i} for i in range(5)])

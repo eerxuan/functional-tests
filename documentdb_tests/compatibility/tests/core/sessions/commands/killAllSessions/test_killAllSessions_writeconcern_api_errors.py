@@ -41,6 +41,7 @@ KILLALLSESSIONS_WRITECONCERN_TYPE_ERROR_TESTS: list[CommandTestCase] = [
         command=lambda ctx, v=val: {"killAllSessions": [], "writeConcern": v},
         error_code=TYPE_MISMATCH_ERROR,
         msg=f"killAllSessions should reject {tid} writeConcern",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         ("string", "majority"),

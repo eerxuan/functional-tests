@@ -36,6 +36,7 @@ KILLSESSIONS_MAXTIMEMS_ACCEPTANCE_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": 1.0},
         msg=f"killSessions should accept {tid} maxTimeMS",
+        marks=(pytest.mark.requires(spec_since="8.2"),) if tid in ("null",) else (),
     )
     for tid, val in [
         # Lower boundary (0) in all representations.
@@ -66,6 +67,7 @@ KILLSESSIONS_WRITECONCERN_ACCEPTANCE_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": 1.0},
         msg="killSessions should accept null writeConcern",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

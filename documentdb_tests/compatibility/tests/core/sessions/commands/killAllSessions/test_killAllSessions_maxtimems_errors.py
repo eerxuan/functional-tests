@@ -51,6 +51,7 @@ KILLALLSESSIONS_MAXTIMEMS_TYPE_ERROR_TESTS: list[CommandTestCase] = [
         command=lambda ctx, v=val: {"killAllSessions": [], "maxTimeMS": v},
         error_code=TYPE_MISMATCH_ERROR,
         msg=f"killAllSessions should reject {tid} for maxTimeMS",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         ("bool_true", True),
@@ -76,6 +77,7 @@ KILLALLSESSIONS_MAXTIMEMS_FRACTIONAL_ERROR_TESTS: list[CommandTestCase] = [
         command=lambda ctx, v=val: {"killAllSessions": [], "maxTimeMS": v},
         error_code=FAILED_TO_PARSE_ERROR,
         msg=f"killAllSessions should reject fractional {tid} maxTimeMS",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         ("double_half", 0.5),
@@ -91,6 +93,7 @@ KILLALLSESSIONS_MAXTIMEMS_NAN_INF_ERROR_TESTS: list[CommandTestCase] = [
         command=lambda ctx, v=val: {"killAllSessions": [], "maxTimeMS": v},
         error_code=FAILED_TO_PARSE_ERROR,
         msg=f"killAllSessions should reject {tid} maxTimeMS",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         ("double_nan", FLOAT_NAN),

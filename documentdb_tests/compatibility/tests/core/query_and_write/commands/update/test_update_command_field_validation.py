@@ -36,18 +36,21 @@ TESTS: list[FieldValidationTest] = [
         command={"update": 123, "updates": [{"q": {}, "u": {"$set": {"x": 1}}}]},
         error_code=INVALID_NAMESPACE_ERROR,
         msg="update should reject integer type for collection name field.",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     FieldValidationTest(
         "update_field_rejects_bool",
         command={"update": True, "updates": [{"q": {}, "u": {"$set": {"x": 1}}}]},
         error_code=INVALID_NAMESPACE_ERROR,
         msg="update should reject boolean type for collection name field.",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     FieldValidationTest(
         "update_field_rejects_array",
         command={"update": ["coll"], "updates": [{"q": {}, "u": {"$set": {"x": 1}}}]},
         error_code=INVALID_NAMESPACE_ERROR,
         msg="update should reject array type for collection name field.",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     FieldValidationTest(
         "q_field_rejects_string",

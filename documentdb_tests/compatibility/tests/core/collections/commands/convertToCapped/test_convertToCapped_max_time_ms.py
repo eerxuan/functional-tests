@@ -165,6 +165,7 @@ MAX_TIME_MS_SUCCESS_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": 1.0},
         msg="maxTimeMS=null should be treated as absent and succeed",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 
@@ -181,6 +182,7 @@ MAX_TIME_MS_TYPE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=TYPE_MISMATCH_ERROR,
         msg=f"maxTimeMS={id} should produce a type-mismatch error",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for id, val in [
         ("string", "hello"),
@@ -275,6 +277,7 @@ MAX_TIME_MS_VALUE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="Fractional double maxTimeMS should produce a failed-to-parse error",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_fractional_double_half",
@@ -286,6 +289,7 @@ MAX_TIME_MS_VALUE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="Double 0.5 maxTimeMS should produce a failed-to-parse error (no truncation)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_fractional_decimal128_half",
@@ -297,6 +301,7 @@ MAX_TIME_MS_VALUE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="Decimal128 0.5 maxTimeMS should produce a failed-to-parse error (no rounding)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_fractional_decimal128_one_and_half",
@@ -308,6 +313,7 @@ MAX_TIME_MS_VALUE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="Decimal128 1.5 maxTimeMS should produce a failed-to-parse error (no rounding)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_fractional_decimal128_two_and_half",
@@ -319,6 +325,7 @@ MAX_TIME_MS_VALUE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="Decimal128 2.5 maxTimeMS should produce a failed-to-parse error (no rounding)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_double_infinity",
@@ -330,6 +337,7 @@ MAX_TIME_MS_VALUE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="Double infinity maxTimeMS should produce a failed-to-parse error",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_double_nan",
@@ -341,6 +349,7 @@ MAX_TIME_MS_VALUE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="Double NaN maxTimeMS should produce a failed-to-parse error",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_decimal128_infinity",
@@ -352,6 +361,7 @@ MAX_TIME_MS_VALUE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="Decimal128 infinity maxTimeMS should produce a failed-to-parse error",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_decimal128_nan",
@@ -363,6 +373,7 @@ MAX_TIME_MS_VALUE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="Decimal128 NaN maxTimeMS should produce a failed-to-parse error",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_double_negative_nan",
@@ -374,6 +385,7 @@ MAX_TIME_MS_VALUE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="Double -NaN maxTimeMS should produce a failed-to-parse error",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "max_time_ms_decimal128_negative_nan",
@@ -385,6 +397,7 @@ MAX_TIME_MS_VALUE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="Decimal128 -NaN maxTimeMS should produce a failed-to-parse error",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

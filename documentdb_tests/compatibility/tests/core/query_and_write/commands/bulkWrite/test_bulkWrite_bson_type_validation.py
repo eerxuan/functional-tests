@@ -21,6 +21,7 @@ from documentdb_tests.framework.error_codes import (
     TYPE_MISMATCH_ERROR,
 )
 from documentdb_tests.framework.executor import execute_admin_command
+from documentdb_tests.framework.parametrize import with_marks
 from documentdb_tests.framework.test_constants import (
     DECIMAL128_ZERO,
     DOUBLE_ZERO,
@@ -367,7 +368,13 @@ def test_bulkWrite_bson_type_rejected(collection, bson_type, sample_value, spec)
 
 
 @pytest.mark.parametrize(
-    "bson_type,sample_value,spec", generate_bson_acceptance_test_cases(BULKWRITE_TYPE_PARAMS)
+    "bson_type,sample_value,spec",
+    # A null writeConcern is treated as omitted from 8.2 on.
+    with_marks(
+        generate_bson_acceptance_test_cases(BULKWRITE_TYPE_PARAMS),
+        ["accept_null_for_command_writeConcern"],
+        pytest.mark.requires(spec_since="8.2"),
+    ),
 )
 def test_bulkWrite_bson_type_accepted(collection, bson_type, sample_value, spec):
     """Test bulkWrite accepts valid BSON types for each input field."""

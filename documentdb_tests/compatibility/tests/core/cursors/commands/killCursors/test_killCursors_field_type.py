@@ -26,6 +26,8 @@ from documentdb_tests.framework.executor import execute_command
 from documentdb_tests.framework.parametrize import pytest_params
 from documentdb_tests.framework.test_constants import DECIMAL128_ONE_AND_HALF
 
+pytestmark = pytest.mark.requires(spec_since="8.2")
+
 # Property [killCursors Field Type Rejection]: all non-string types for
 # the killCursors field are rejected.
 KILLCURSORS_FIELD_TYPE_ERROR_TESTS: list[CommandTestCase] = [

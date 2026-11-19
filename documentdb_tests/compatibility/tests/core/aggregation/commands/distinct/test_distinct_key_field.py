@@ -108,6 +108,7 @@ DISTINCT_DOT_NOTATION_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"distinct": ctx.collection, "key": ".x"},
         expected={"values": [], "ok": 1.0},
         msg="distinct should return empty results for a key with a leading dot",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "dot_trailing_dot_empty",
@@ -115,6 +116,7 @@ DISTINCT_DOT_NOTATION_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"distinct": ctx.collection, "key": "x."},
         expected={"values": [], "ok": 1.0},
         msg="distinct should return empty results for a key with a trailing dot",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "dot_consecutive_dots_empty",
@@ -122,6 +124,7 @@ DISTINCT_DOT_NOTATION_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"distinct": ctx.collection, "key": "x..y"},
         expected={"values": [], "ok": 1.0},
         msg="distinct should return empty results for a key with consecutive dots",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "dot_negative_numeric_empty",
@@ -193,6 +196,7 @@ DISTINCT_SPECIAL_CHARS_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"distinct": ctx.collection, "key": "$price"},
         expected={"values": [9.99], "ok": 1.0},
         msg="distinct should treat dollar sign in key as a literal field name character",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "special_dollar_only",
@@ -200,6 +204,7 @@ DISTINCT_SPECIAL_CHARS_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"distinct": ctx.collection, "key": "$"},
         expected={"values": [], "ok": 1.0},
         msg="distinct should succeed with $ as entire key (returns empty if no matching field)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "special_double_dollar",
@@ -207,6 +212,7 @@ DISTINCT_SPECIAL_CHARS_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"distinct": ctx.collection, "key": "$$"},
         expected={"values": [], "ok": 1.0},
         msg="distinct should succeed with $$ as entire key (returns empty if no matching field)",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "special_space_in_key",
@@ -258,6 +264,7 @@ DISTINCT_SPECIAL_CHARS_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"distinct": ctx.collection, "key": ""},
         expected={"values": ["empty_key_value"], "ok": 1.0},
         msg='distinct should match documents with a field literally named ""',
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

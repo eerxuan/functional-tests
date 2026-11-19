@@ -57,7 +57,12 @@ WRITE_CONCERN_CASES: list[IndexTestCase] = [
         write_concern={"w": 1, "wtimeout": "fast"},
         msg="Should succeed with writeConcern wtimeout as string",
     ),
-    IndexTestCase("wc_null", write_concern=None, msg="Should succeed with null writeConcern"),
+    IndexTestCase(
+        "wc_null",
+        write_concern=None,
+        msg="Should succeed with null writeConcern",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
+    ),
     IndexTestCase(
         "wc_empty_object", write_concern={}, msg="Should succeed with empty writeConcern object"
     ),

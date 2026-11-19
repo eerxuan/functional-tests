@@ -66,7 +66,10 @@ COMPACT_NULL_AND_MISSING_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"compact": ctx.collection, "writeConcern": None},
         expected={"bytesFreed": 0, "ok": 1.0},
         msg="null writeConcern should be treated as omitted",
-        marks=(pytest.mark.requires(unforced_compact=True),),
+        marks=(
+            pytest.mark.requires(unforced_compact=True),
+            pytest.mark.requires(spec_since="8.2"),
+        ),
     ),
 ]
 

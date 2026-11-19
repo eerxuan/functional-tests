@@ -163,6 +163,7 @@ PARSE_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=FAILED_TO_PARSE_ERROR,
         msg="maxTimeMS as fractional double should fail",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

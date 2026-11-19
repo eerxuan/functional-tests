@@ -105,6 +105,7 @@ COLLMOD_TARGET_TYPE_ERROR_TESTS: list[CommandTestCase] = [
         command={"collMod": val},
         error_code=INVALID_NAMESPACE_ERROR,
         msg=f"collMod should reject a {tid} target as an invalid namespace type",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     )
     for tid, val in [
         ("int32", 123),

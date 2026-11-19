@@ -17,36 +17,42 @@ DROP_INVALID_NAME_TYPE_TESTS: list[CommandTestCase] = [
         command={"drop": None},
         error_code=INVALID_NAMESPACE_ERROR,
         msg="Null collection name should fail with InvalidNamespace",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "integer",
         command={"drop": 123},
         error_code=INVALID_NAMESPACE_ERROR,
         msg="Integer collection name should fail with InvalidNamespace",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "boolean",
         command={"drop": True},
         error_code=INVALID_NAMESPACE_ERROR,
         msg="Boolean collection name should fail with InvalidNamespace",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "double",
         command={"drop": 1.5},
         error_code=INVALID_NAMESPACE_ERROR,
         msg="Double collection name should fail with InvalidNamespace",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "object",
         command={"drop": {"a": 1}},
         error_code=INVALID_NAMESPACE_ERROR,
         msg="Object collection name should fail with InvalidNamespace",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "array",
         command={"drop": [1, 2]},
         error_code=INVALID_NAMESPACE_ERROR,
         msg="Array collection name should fail with InvalidNamespace",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
 ]
 

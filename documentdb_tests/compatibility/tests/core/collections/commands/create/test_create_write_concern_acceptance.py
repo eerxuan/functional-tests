@@ -38,6 +38,7 @@ CREATE_WC_DOCUMENT_AND_W_TESTS: list[CommandTestCase] = [
         },
         expected={"ok": 1.0},
         msg="null writeConcern should be treated as omitted",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="wc_empty_document",

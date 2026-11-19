@@ -202,6 +202,7 @@ AGGREGATE_CURSOR_REQUIREMENT_TESTS: list[CommandTestCase] = [
         command=lambda ctx: {"aggregate": ctx.collection, "pipeline": [], "explain": False},
         error_code=FAILED_TO_PARSE_ERROR,
         msg="aggregate should require cursor field when explain=false",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         "cursor_type_enforced_with_explain_true",

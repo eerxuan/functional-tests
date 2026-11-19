@@ -70,6 +70,7 @@ CREATE_ENCRYPTED_FIELDS_QUERY_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=ENCRYPTED_FIELD_EMPTY_QUERIES_ERROR,
         msg="empty queries array should fail",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="ef_err_invalid_query_type",
@@ -112,6 +113,7 @@ CREATE_ENCRYPTED_FIELDS_QUERY_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=ENCRYPTED_FIELD_TEXT_SEARCH_TYPE_ERROR,
         msg="suffixPreview requires string bsonType",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="ef_err_prefix_preview_non_string_bsontype",
@@ -136,6 +138,7 @@ CREATE_ENCRYPTED_FIELDS_QUERY_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=ENCRYPTED_FIELD_TEXT_SEARCH_TYPE_ERROR,
         msg="prefixPreview requires string bsonType",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="ef_err_suffix_preview_missing_str_min_query_length",
@@ -159,6 +162,7 @@ CREATE_ENCRYPTED_FIELDS_QUERY_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=ENCRYPTED_FIELD_MISSING_STR_MIN_QUERY_LENGTH_ERROR,
         msg="suffixPreview without strMinQueryLength should fail",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="ef_err_suffix_preview_missing_str_max_query_length",
@@ -182,6 +186,7 @@ CREATE_ENCRYPTED_FIELDS_QUERY_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=ENCRYPTED_FIELD_MISSING_STR_MAX_QUERY_LENGTH_ERROR,
         msg="suffixPreview without strMaxQueryLength should fail",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="ef_err_suffix_preview_missing_case_sensitive",
@@ -205,6 +210,7 @@ CREATE_ENCRYPTED_FIELDS_QUERY_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=ENCRYPTED_FIELD_MISSING_CASE_SENSITIVE_ERROR,
         msg="suffixPreview without caseSensitive should fail",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="ef_err_suffix_preview_missing_diacritic_sensitive",
@@ -228,6 +234,7 @@ CREATE_ENCRYPTED_FIELDS_QUERY_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=ENCRYPTED_FIELD_MISSING_DIACRITIC_SENSITIVE_ERROR,
         msg="suffixPreview without diacriticSensitive should fail",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="ef_err_prefix_preview_missing_all_subfields",
@@ -248,6 +255,7 @@ CREATE_ENCRYPTED_FIELDS_QUERY_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=ENCRYPTED_FIELD_MISSING_STR_MIN_QUERY_LENGTH_ERROR,
         msg="prefixPreview without any required sub-fields should fail",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="ef_err_str_min_query_length_zero",
@@ -320,6 +328,7 @@ CREATE_ENCRYPTED_FIELDS_QUERY_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=ENCRYPTED_FIELD_STR_LENGTH_ERROR,
         msg="strMinQueryLength > strMaxQueryLength should fail",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="ef_err_case_sensitive_non_bool",
@@ -344,6 +353,7 @@ CREATE_ENCRYPTED_FIELDS_QUERY_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=TYPE_MISMATCH_ERROR,
         msg="caseSensitive must be bool",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="ef_err_diacritic_sensitive_non_bool",
@@ -368,6 +378,7 @@ CREATE_ENCRYPTED_FIELDS_QUERY_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=TYPE_MISMATCH_ERROR,
         msg="diacriticSensitive must be bool",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="ef_err_invalid_query_combo_equality_range",
@@ -389,6 +400,7 @@ CREATE_ENCRYPTED_FIELDS_QUERY_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=ENCRYPTED_FIELD_INVALID_QUERY_COMBO_ERROR,
         msg="equality+range combo is not allowed",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="ef_err_max_query_types_exceeded",
@@ -423,6 +435,7 @@ CREATE_ENCRYPTED_FIELDS_QUERY_ERROR_TESTS: list[CommandTestCase] = [
         },
         error_code=ENCRYPTED_FIELD_MAX_QUERY_TYPES_ERROR,
         msg="more than 2 query types per field should fail",
+        marks=(pytest.mark.requires(spec_since="8.2"),),
     ),
     CommandTestCase(
         id="ef_err_sparsity_zero",
